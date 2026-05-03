@@ -1,0 +1,311 @@
+/* CoDi landing — bits Tailwind doesn't cover cleanly. */
+
+/* faint grid behind the hero */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black 50%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 50%, transparent 85%);
+}
+
+/* ========== Install tabs ========== */
+.install-tab {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  padding: 0.4rem 0.85rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.02);
+  transition: all 0.15s ease;
+}
+.install-tab:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+.install-tab.tab-active {
+  background: rgba(47, 114, 255, 0.15);
+  border-color: rgba(47, 114, 255, 0.45);
+  color: #bcd9ff;
+}
+
+/* ========== "How it works" steps ========== */
+.step {
+  position: relative;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+  transition: all 0.2s ease;
+}
+.step:hover {
+  border-color: rgba(47, 114, 255, 0.4);
+  transform: translateY(-2px);
+}
+.step h3 {
+  margin-top: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+}
+.step p {
+  margin-top: 0.5rem;
+  color: #cbd5e1;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+.step-num {
+  display: inline-grid;
+  place-items: center;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 0.5rem;
+  background: rgba(47, 114, 255, 0.18);
+  color: #bcd9ff;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  border: 1px solid rgba(47, 114, 255, 0.3);
+}
+
+/* ========== Diagram type cards ========== */
+.type-card {
+  padding: 1.4rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+  transition: all 0.2s ease;
+}
+.type-card:hover {
+  border-color: rgba(47, 114, 255, 0.4);
+  transform: translateY(-2px);
+}
+.type-card h3 {
+  margin-top: 0.6rem;
+  font-weight: 700;
+  color: #fff;
+}
+.type-card p {
+  margin-top: 0.4rem;
+  color: #cbd5e1;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+.type-tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.4rem;
+  background: rgba(47, 114, 255, 0.15);
+  color: #bcd9ff;
+  border: 1px solid rgba(47, 114, 255, 0.3);
+  letter-spacing: 0.04em;
+}
+.type-card--accent {
+  background: linear-gradient(180deg, rgba(232, 121, 249, 0.08), rgba(47, 114, 255, 0.04));
+  border-color: rgba(232, 121, 249, 0.3);
+}
+.type-card--accent .type-tag {
+  background: rgba(232, 121, 249, 0.18);
+  border-color: rgba(232, 121, 249, 0.4);
+  color: #f5d0fe;
+}
+.type-card--ghost {
+  background: transparent;
+  border-style: dashed;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ========== Surface cards ========== */
+.surface-card {
+  padding: 1.6rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+  transition: all 0.2s ease;
+}
+.surface-card:hover {
+  border-color: rgba(47, 114, 255, 0.4);
+  transform: translateY(-2px);
+}
+.surface-icon {
+  display: inline-grid;
+  place-items: center;
+  height: 2.4rem;
+  width: 2.4rem;
+  border-radius: 0.6rem;
+  background: rgba(47, 114, 255, 0.15);
+  color: #bcd9ff;
+  font-weight: 800;
+  border: 1px solid rgba(47, 114, 255, 0.3);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+}
+.surface-card h3 {
+  margin-top: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+}
+.surface-card p {
+  margin-top: 0.45rem;
+  color: #cbd5e1;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.surface-card--ghost {
+  background: transparent;
+  border-style: dashed;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ========== Pricing cards ========== */
+.price-card {
+  position: relative;
+  padding: 1.75rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+  display: flex;
+  flex-direction: column;
+}
+.price-card--accent {
+  border-color: rgba(47, 114, 255, 0.6);
+  background: linear-gradient(180deg, rgba(47, 114, 255, 0.12), rgba(47, 114, 255, 0.02));
+  box-shadow: 0 20px 40px -20px rgba(47, 114, 255, 0.4);
+}
+.price-card--dark {
+  background: linear-gradient(180deg, rgba(7, 11, 24, 0.9), rgba(7, 11, 24, 0.6));
+}
+.price-tier {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #94a3b8;
+  font-weight: 700;
+}
+.price-amount {
+  margin-top: 0.4rem;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+.price-unit {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #94a3b8;
+  margin-left: 0.2rem;
+}
+.price-tagline {
+  margin-top: 0.2rem;
+  color: #cbd5e1;
+  font-size: 0.92rem;
+}
+.price-list {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  font-size: 0.92rem;
+  color: #cbd5e1;
+  flex: 1;
+}
+.price-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+.price-list li::before {
+  content: '✓';
+  color: #34d399;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.price-cta {
+  margin-top: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1rem;
+  border-radius: 0.6rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  transition: background 0.15s ease;
+}
+.price-cta:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.price-cta--solid {
+  background: #2f72ff;
+  border-color: #2f72ff;
+  box-shadow: 0 12px 24px -10px rgba(47, 114, 255, 0.6);
+}
+.price-cta--solid:hover {
+  background: #5897ff;
+}
+
+/* ========== Open core cards ========== */
+.open-card {
+  padding: 1.4rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+}
+.open-license {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  padding: 0.18rem 0.5rem;
+  border-radius: 0.35rem;
+  background: rgba(52, 211, 153, 0.15);
+  color: #6ee7b7;
+  border: 1px solid rgba(52, 211, 153, 0.3);
+}
+.open-card h3 {
+  margin-top: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+}
+.open-card p {
+  margin-top: 0.35rem;
+  color: #cbd5e1;
+  font-size: 0.92rem;
+}
+
+/* ========== FAQ ========== */
+.faq {
+  padding: 1.25rem 0;
+  cursor: pointer;
+}
+.faq summary {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #fff;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: '+';
+  font-weight: 400;
+  color: #94a3b8;
+  font-size: 1.4rem;
+  line-height: 1;
+  transition: transform 0.15s ease;
+}
+.faq[open] summary::after {
+  content: '−';
+}
+.faq p {
+  margin-top: 0.75rem;
+  color: #cbd5e1;
+  line-height: 1.65;
+  font-size: 0.95rem;
+}

@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CoDi — Architecture intelligence through diagrams as live queries</title>
+  <meta name="description" content="CoDi is the open-source platform for architecture diagrams that validate themselves. Generate from code, import from whiteboards, find security violations, drill from Grafana to source." />
+  <meta property="og:title" content="CoDi — Architecture intelligence" />
+  <meta property="og:description" content="From whiteboard to source code in one platform. Open-source CLI, collaborative web app, AI-assisted authoring." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50:  '#eef6ff',
+              100: '#d9eaff',
+              200: '#bcd9ff',
+              300: '#8dbeff',
+              400: '#5897ff',
+              500: '#2f72ff',
+              600: '#1a55f0',
+              700: '#1741c8',
+              800: '#1937a3',
+              900: '#1a3380',
+            },
+            ink: {
+              900: '#070b18',
+              800: '#0c1325',
+              700: '#131c33',
+              600: '#1c2542',
+              500: '#283255',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="bg-ink-900 text-slate-100 font-sans antialiased selection:bg-brand-500/40">
+
+  <!-- ========== Background mesh ========== -->
+  <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(47,114,255,0.18),_transparent_60%)]"></div>
+    <div class="absolute -top-40 -left-40 h-[640px] w-[640px] rounded-full bg-brand-500/10 blur-3xl"></div>
+    <div class="absolute top-[28rem] -right-40 h-[640px] w-[640px] rounded-full bg-fuchsia-500/10 blur-3xl"></div>
+    <div class="absolute inset-0 bg-grid"></div>
+  </div>
+
+  <!-- ========== Nav ========== -->
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-ink-900/70 border-b border-white/5">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2 group">
+        <span class="grid place-items-center h-8 w-8 rounded-lg bg-gradient-to-br from-brand-400 to-brand-600 shadow-lg shadow-brand-500/40 font-bold">C</span>
+        <span class="font-extrabold tracking-tight text-lg">CoDi</span>
+        <span class="text-xs font-mono text-slate-400 hidden sm:inline">v1.0</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-7 text-sm text-slate-300">
+        <a href="#how" class="hover:text-white">How it works</a>
+        <a href="#types" class="hover:text-white">Diagram types</a>
+        <a href="#integrations" class="hover:text-white">Integrations</a>
+        <a href="#pricing" class="hover:text-white">Pricing</a>
+        <a href="#docs" class="hover:text-white">Docs</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="https://github.com/codi-dev/codi" class="hidden sm:flex items-center gap-2 text-sm text-slate-300 hover:text-white">
+          <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current"><path d="M12 .5C5.65.5.5 5.66.5 12.04c0 5.1 3.29 9.42 7.86 10.95.58.11.79-.25.79-.55v-2.13c-3.2.7-3.87-1.37-3.87-1.37-.52-1.34-1.27-1.7-1.27-1.7-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.16 1.18a10.92 10.92 0 0 1 5.75 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.41-5.25 5.69.41.36.78 1.06.78 2.13v3.16c0 .31.21.67.8.55A11.5 11.5 0 0 0 23.5 12.04C23.5 5.66 18.35.5 12 .5Z"/></svg>
+          Star <span class="font-mono text-xs px-1.5 py-0.5 rounded-md border border-white/10 bg-white/5">4.2k</span>
+        </a>
+        <a href="#install" class="hidden sm:inline-flex text-sm text-slate-200 px-3 py-1.5 rounded-md border border-white/10 hover:bg-white/5">Install CLI</a>
+        <a href="#pricing" class="text-sm text-white px-4 py-1.5 rounded-md bg-brand-500 hover:bg-brand-400 font-semibold shadow-lg shadow-brand-500/30">Start free</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== Hero ========== -->
+  <section class="relative pt-20 pb-24 sm:pt-28">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        <div class="lg:col-span-7">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-white/5 border border-white/10 text-brand-200">
+            <span class="h-1.5 w-1.5 rounded-full bg-brand-400 animate-pulse"></span>
+            CoDi 1.0 — out now
+          </span>
+
+          <h1 class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05]">
+            <span class="text-white">Architecture diagrams that</span>
+            <span class="bg-gradient-to-r from-brand-300 via-brand-400 to-fuchsia-400 bg-clip-text text-transparent">validate&nbsp;themselves.</span>
+          </h1>
+
+          <p class="mt-6 text-lg text-slate-300 max-w-2xl">
+            Author in plain YAML. Render with the open-source CLI. Generate from your repo, import from a whiteboard photo, find security violations with overlays — and drill from a Grafana KPI to the exact source line in three clicks.
+          </p>
+
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <a href="#install" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-brand-500 hover:bg-brand-400 text-white font-semibold shadow-xl shadow-brand-500/30">
+              Install the CLI
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#playground" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-white/5 hover:bg-white/10 text-white font-semibold border border-white/10">
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 3l14 9-14 9z"/></svg>
+              Try in browser — no install
+            </a>
+            <a href="#demo" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-slate-300 hover:text-white font-medium">
+              Watch the 2:30 demo →
+            </a>
+          </div>
+
+          <dl class="mt-10 grid grid-cols-3 gap-6 text-left">
+            <div>
+              <dt class="text-xs uppercase tracking-wider text-slate-500">Open-source CLI</dt>
+              <dd class="mt-1 font-mono text-brand-300">Apache 2.0</dd>
+            </div>
+            <div>
+              <dt class="text-xs uppercase tracking-wider text-slate-500">Diagram types</dt>
+              <dd class="mt-1 font-mono text-brand-300">7 built-in</dd>
+            </div>
+            <div>
+              <dt class="text-xs uppercase tracking-wider text-slate-500">Render time</dt>
+              <dd class="mt-1 font-mono text-brand-300">&lt; 100ms / 5K nodes</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Hero "live editor" mock -->
+        <div class="lg:col-span-5">
+          <div class="rounded-2xl bg-gradient-to-b from-white/[0.06] to-white/[0.02] border border-white/10 shadow-2xl shadow-brand-500/10 overflow-hidden">
+            <div class="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-ink-800/60">
+              <div class="flex gap-1.5">
+                <span class="h-3 w-3 rounded-full bg-rose-400/70"></span>
+                <span class="h-3 w-3 rounded-full bg-amber-300/70"></span>
+                <span class="h-3 w-3 rounded-full bg-emerald-400/70"></span>
+              </div>
+              <span class="text-xs text-slate-400 font-mono ml-2">platform.codi</span>
+              <span class="ml-auto text-xs text-emerald-300 flex items-center gap-1.5">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span> validated
+              </span>
+            </div>
+
+            <div class="grid grid-cols-2 text-sm">
+              <pre class="p-4 font-mono text-[12.5px] leading-relaxed text-slate-200 border-r border-white/10 overflow-x-auto"><code><span class="text-fuchsia-300">PlatformArchitecture</span><span class="text-slate-400">[c4-context]:</span>
+  - <span class="text-emerald-300">Customer</span><span class="text-slate-400">[person]</span>
+  - <span class="text-emerald-300">WebApp</span><span class="text-slate-400">[system]</span>
+  - <span class="text-emerald-300">PaymentAPI</span><span class="text-slate-400">[system]</span>
+  - <span class="text-emerald-300">Stripe</span><span class="text-slate-400">[system, external]</span>
+  - <span class="text-emerald-300">UserDB</span><span class="text-slate-400">[system]</span>
+  - Customer <span class="text-brand-300">--&gt;</span> WebApp: <span class="text-amber-200">"signs in"</span>
+  - WebApp <span class="text-brand-300">--&gt;</span> PaymentAPI: <span class="text-amber-200">"charge"</span>
+  - PaymentAPI <span class="text-brand-300">--&gt;</span> Stripe: <span class="text-amber-200">"PSP"</span>
+  - WebApp <span class="text-brand-300">--&gt;</span> UserDB: <span class="text-amber-200">"reads"</span></code></pre>
+
+              <div class="p-4 grid place-items-center bg-ink-800/40">
+                <svg viewBox="0 0 220 200" class="w-full h-auto">
+                  <defs>
+                    <marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                      <polygon points="0 0, 6 3, 0 6" fill="#94a3b8" />
+                    </marker>
+                  </defs>
+                  <!-- Customer (person) -->
+                  <circle cx="40" cy="32" r="10" fill="#1a55f0" />
+                  <rect x="22" y="42" width="36" height="22" rx="4" fill="#1a55f0" />
+                  <text x="40" y="56" text-anchor="middle" fill="white" font-size="9" font-weight="700">Customer</text>
+                  <!-- WebApp -->
+                  <rect x="92" y="28" width="60" height="36" rx="6" fill="#2f72ff" />
+                  <text x="122" y="50" text-anchor="middle" fill="white" font-size="10" font-weight="700">WebApp</text>
+                  <!-- PaymentAPI -->
+                  <rect x="92" y="100" width="60" height="36" rx="6" fill="#2f72ff" />
+                  <text x="122" y="122" text-anchor="middle" fill="white" font-size="10" font-weight="700">PaymentAPI</text>
+                  <!-- Stripe (external) -->
+                  <rect x="172" y="100" width="40" height="36" rx="6" fill="#475569" stroke="#94a3b8" stroke-dasharray="3,2" />
+                  <text x="192" y="122" text-anchor="middle" fill="white" font-size="9" font-weight="700">Stripe</text>
+                  <!-- UserDB -->
+                  <rect x="92" y="158" width="60" height="32" rx="6" fill="#2f72ff" />
+                  <text x="122" y="178" text-anchor="middle" fill="white" font-size="10" font-weight="700">UserDB</text>
+                  <!-- edges -->
+                  <line x1="60" y1="46" x2="90" y2="46" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#arr)" />
+                  <line x1="122" y1="68" x2="122" y2="98" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#arr)" />
+                  <line x1="154" y1="118" x2="170" y2="118" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#arr)" />
+                  <line x1="122" y1="138" x2="122" y2="156" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#arr)" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="px-4 py-2 border-t border-white/10 bg-ink-800/60 flex items-center justify-between text-xs text-slate-400 font-mono">
+              <span>5 nodes · 4 edges</span>
+              <span class="text-brand-300">render &lt; 14ms</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Trusted by / channels ========== -->
+  <section class="border-y border-white/5 bg-ink-800/30">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 py-8 grid sm:grid-cols-2 lg:grid-cols-6 gap-6 items-center text-slate-400 text-sm">
+      <span class="text-xs uppercase tracking-widest text-slate-500">Works with</span>
+      <span class="flex items-center gap-2 font-semibold">⌘ Cursor</span>
+      <span class="flex items-center gap-2 font-semibold">Claude Code</span>
+      <span class="flex items-center gap-2 font-semibold">Zed</span>
+      <span class="flex items-center gap-2 font-semibold">VS Code · JetBrains</span>
+      <span class="flex items-center gap-2 font-semibold">GitHub · Grafana</span>
+    </div>
+  </section>
+
+  <!-- ========== Install ========== -->
+  <section id="install" class="py-20">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Install in one line. Render in three.</h2>
+        <p class="mt-4 text-slate-300 text-lg">A single Rust binary. Zero runtime dependencies. Works on macOS, Linux, Windows. The same binary powers your CLI, your editor, your CI, and your AI agent.</p>
+        <div class="mt-6 flex flex-wrap gap-2 text-sm">
+          <button data-tab="brew" class="install-tab tab-active">brew</button>
+          <button data-tab="cargo" class="install-tab">cargo</button>
+          <button data-tab="npm" class="install-tab">npm</button>
+          <button data-tab="curl" class="install-tab">curl</button>
+        </div>
+        <div class="mt-3 rounded-xl bg-ink-700/70 border border-white/10 font-mono text-sm overflow-hidden">
+          <div class="px-4 py-3 text-emerald-300 install-cmd" data-tab="brew">$ brew install codi</div>
+          <div class="px-4 py-3 text-emerald-300 install-cmd hidden" data-tab="cargo">$ cargo install codi</div>
+          <div class="px-4 py-3 text-emerald-300 install-cmd hidden" data-tab="npm">$ npm install -g @codi/cli</div>
+          <div class="px-4 py-3 text-emerald-300 install-cmd hidden" data-tab="curl">$ curl -fsSL https://codi.dev/install.sh | sh</div>
+        </div>
+
+        <p class="mt-6 text-sm text-slate-400">Then:</p>
+        <pre class="mt-2 rounded-xl bg-ink-700/70 border border-white/10 px-4 py-3 font-mono text-sm text-slate-200 leading-relaxed overflow-x-auto"><code>$ codi render platform.codi
+Rendered 5 nodes, 4 edges → platform.png</code></pre>
+
+        <p class="mt-6 text-sm">
+          <span class="text-slate-400">Or skip install:</span>
+          <a href="#playground" class="text-brand-300 hover:text-brand-200 font-medium">try CoDi in your browser →</a>
+        </p>
+      </div>
+
+      <!-- terminal mock -->
+      <div class="rounded-2xl border border-white/10 bg-ink-800 shadow-2xl shadow-brand-500/10 overflow-hidden">
+        <div class="px-4 py-3 border-b border-white/10 bg-ink-700 flex items-center gap-2">
+          <span class="h-3 w-3 rounded-full bg-rose-400/70"></span>
+          <span class="h-3 w-3 rounded-full bg-amber-300/70"></span>
+          <span class="h-3 w-3 rounded-full bg-emerald-400/70"></span>
+          <span class="ml-3 text-xs font-mono text-slate-400">~/projects/platform</span>
+        </div>
+        <div class="p-5 font-mono text-[13px] leading-relaxed text-slate-300">
+          <div><span class="text-emerald-300">$</span> codi validate platform.codi</div>
+          <div class="text-slate-400">OK: platform.codi (5 nodes, 4 edges)</div>
+          <div class="mt-3"><span class="text-emerald-300">$</span> codi render platform.codi --theme=corporate --format=svg</div>
+          <div class="text-slate-400">Rendered 5 nodes, 4 edges → platform.svg</div>
+          <div class="mt-3"><span class="text-emerald-300">$</span> codi push platform.codi</div>
+          <div class="text-slate-400">→ <span class="text-brand-300 underline">https://app.codi.dev/d/0x7f2a</span></div>
+          <div class="mt-3"><span class="text-emerald-300">$</span> codi import --source=jira --project=AUTH</div>
+          <div class="text-slate-400">→ auth-board.codi (47 nodes, 102 edges)</div>
+          <div class="mt-3"><span class="text-emerald-300">$</span> codi mcp <span class="text-slate-500"># exposes CoDi to Cursor / Claude / Zed</span></div>
+          <div class="text-slate-400">listening on stdio…</div>
+          <div class="mt-3 text-slate-500 italic"># the same binary, six surfaces</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== How it works ========== -->
+  <section id="how" class="py-20 bg-gradient-to-b from-transparent via-ink-800/40 to-transparent">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">From whiteboard to source code, on one platform.</h2>
+        <p class="mt-4 text-slate-300 text-lg">Eight beats from the 2:30 north-star demo. Each one is a real capability you can use today.</p>
+      </div>
+
+      <ol class="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <!-- 1 -->
+        <li class="step">
+          <span class="step-num">1</span>
+          <h3>Whiteboard → diagram</h3>
+          <p>Drop a photo of a meeting whiteboard. CoDi extracts the topology, infers the diagram type, and renders a clean, typed diagram.</p>
+        </li>
+        <!-- 2 -->
+        <li class="step">
+          <span class="step-num">2</span>
+          <h3>Apply your brand</h3>
+          <p>One click swaps colors, fonts, and presentation chrome to your corporate theme. Client-presentable in 30 seconds.</p>
+        </li>
+        <!-- 3 -->
+        <li class="step">
+          <span class="step-num">3</span>
+          <h3>Share with the team</h3>
+          <p>Real-time multiplayer editing. Move a node, your team sees it. Comment on a finding, your CISO sees it.</p>
+        </li>
+        <!-- 4 -->
+        <li class="step">
+          <span class="step-num">4</span>
+          <h3>Run a security overlay</h3>
+          <p>"PCI compliance check" highlights an unencrypted flow crossing a trust boundary. Find real bugs before review.</p>
+        </li>
+        <!-- 5 -->
+        <li class="step">
+          <span class="step-num">5</span>
+          <h3>Generate from code</h3>
+          <p>Connect a repo. Tree-sitter extracts the architecture. Every node carries a <code class="px-1 py-0.5 bg-white/10 rounded text-xs font-mono">source:</code> link back to the file.</p>
+        </li>
+        <!-- 6 -->
+        <li class="step">
+          <span class="step-num">6</span>
+          <h3>Navigate to the bug</h3>
+          <p>Click a node → see source links → click → land on the exact line. Three clicks from a finding to a fix.</p>
+        </li>
+        <!-- 7 -->
+        <li class="step">
+          <span class="step-num">7</span>
+          <h3>Living dashboard</h3>
+          <p>Grafana scrapes CoDi metrics. "Open security findings: 3" sits next to your uptime panel. Architecture is now a KPI.</p>
+        </li>
+        <!-- 8 -->
+        <li class="step">
+          <span class="step-num">8</span>
+          <h3>Drill from KPI to code</h3>
+          <p>Click the Grafana metric → land in the live diagram → click the flagged node → open the file. Three clicks. Always.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ========== Diagram types ========== -->
+  <section id="types" class="py-20">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Seven diagram types. One language.</h2>
+        <p class="mt-4 text-slate-300 text-lg">Same YAML grammar, type-specific vocabulary. Validation rules per type catch errors no general-purpose tool can.</p>
+      </div>
+
+      <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="type-card"><span class="type-tag">c4-context</span><h3>C4 Context</h3><p>Persons, systems, boundaries — the highest level of architecture. Validates connection types and externals.</p></div>
+        <div class="type-card"><span class="type-tag">sequence</span><h3>Sequence</h3><p>Lifelines, sync calls, returns, fragments (alt/loop/par). Order-preserving, label-required.</p></div>
+        <div class="type-card"><span class="type-tag">class</span><h3>Class</h3><p>UML classes with visibility, interfaces, enums. Inheritance cycles are errors.</p></div>
+        <div class="type-card"><span class="type-tag">activity</span><h3>Activity</h3><p>Swimlanes, decisions, fork/join. Models any process from CI to onboarding.</p></div>
+        <div class="type-card"><span class="type-tag">state-machine</span><h3>State Machine</h3><p>States, composite states, choice and history pseudostates. For protocols and lifecycles.</p></div>
+        <div class="type-card type-card--accent"><span class="type-tag">threat-model</span><h3>Threat Model · STRIDE</h3><p>Trust boundaries, processes, data stores, data flows. <code class="text-xs font-mono">.tm7</code> import. Auto-generated STRIDE threats per element.</p></div>
+        <div class="type-card"><span class="type-tag">unstructured</span><h3>Unstructured</h3><p>Whiteboard mode. Any node, any edge. Promote to typed when you're ready.</p></div>
+        <div class="type-card type-card--ghost"><span class="type-tag">+ community</span><h3>Author your own</h3><p>The diagram-type API is documented and stable. Contribute via the <a href="#registry" class="text-brand-300 hover:text-brand-200">community registry</a>.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Integrations / surfaces ========== -->
+  <section id="integrations" class="py-20 bg-gradient-to-b from-transparent via-ink-800/40 to-transparent">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">CoDi shows up where you already work.</h2>
+        <p class="mt-4 text-slate-300 text-lg">Same Rust core. Six transports. Pick the surface that fits your workflow — they all see the same diagram.</p>
+      </div>
+
+      <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="surface-card">
+          <div class="surface-icon">⌘</div>
+          <h3>Cursor · Claude · Zed</h3>
+          <p>Add the <code class="font-mono text-xs bg-white/10 px-1 py-0.5 rounded">codi mcp</code> server in one line. Your AI agent gains validate, render, lint, and overlay tools.</p>
+        </div>
+        <div class="surface-card">
+          <div class="surface-icon">VS</div>
+          <h3>VS Code &amp; JetBrains</h3>
+          <p>Live preview pane, in-editor validation, click-to-fix code actions. Powered by <code class="font-mono text-xs bg-white/10 px-1 py-0.5 rounded">codi-lsp</code>.</p>
+        </div>
+        <div class="surface-card">
+          <div class="surface-icon">GH</div>
+          <h3>GitHub Action</h3>
+          <p>Render <code class="font-mono text-xs bg-white/10 px-1 py-0.5 rounded">.codi</code> diffs as PR check-runs and image comments. Architecture review without leaving the PR.</p>
+        </div>
+        <div class="surface-card">
+          <div class="surface-icon">📊</div>
+          <h3>Grafana</h3>
+          <p>Prometheus-compatible metrics endpoint. Embed thumbnails. Deep-link panels back to live, filtered diagrams.</p>
+        </div>
+        <div class="surface-card">
+          <div class="surface-icon">📄</div>
+          <h3>Confluence · Notion · Slack</h3>
+          <p>Embed live thumbnails in your docs. Slack unfurls share links into preview cards.</p>
+        </div>
+        <div class="surface-card surface-card--ghost">
+          <div class="surface-icon">+</div>
+          <h3>Build your own</h3>
+          <p>The CLI, MCP server, and LSP are all open source. Wrap them however your workflow needs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Pricing ========== -->
+  <section id="pricing" class="py-20">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Free where it should be. Paid where it earns its keep.</h2>
+        <p class="mt-4 text-slate-300 text-lg">The CLI is free forever, no account required. The web app is free to start, with paid tiers for AI, collaboration, and enterprise controls.</p>
+      </div>
+
+      <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <!-- Free -->
+        <div class="price-card">
+          <h3 class="price-tier">Free</h3>
+          <p class="price-amount">$0</p>
+          <p class="price-tagline">CLI + 3 private diagrams</p>
+          <ul class="price-list">
+            <li>Open-source CLI (Apache 2.0)</li>
+            <li>All 7 diagram types</li>
+            <li>MCP server for AI agents</li>
+            <li>VS Code / JetBrains extensions</li>
+            <li>3 private diagrams in the web app</li>
+            <li>Public sharing links</li>
+          </ul>
+          <a href="#install" class="price-cta">Install</a>
+        </div>
+
+        <!-- Pro -->
+        <div class="price-card price-card--accent">
+          <span class="absolute -top-3 right-4 text-xs px-2 py-1 rounded-full bg-brand-500 text-white font-semibold shadow-lg shadow-brand-500/30">Most popular</span>
+          <h3 class="price-tier">Pro</h3>
+          <p class="price-amount">$12<span class="price-unit">/mo</span></p>
+          <p class="price-tagline">For individual power users</p>
+          <ul class="price-list">
+            <li>Everything in Free</li>
+            <li>Unlimited private diagrams</li>
+            <li><strong>Image-to-diagram</strong> with convergence loop</li>
+            <li><strong>AI chat</strong> — natural-language queries</li>
+            <li><strong>Code-to-diagram</strong> with custom queries</li>
+            <li>Custom themes</li>
+            <li>JIRA / GitHub / AWS connectors</li>
+          </ul>
+          <a href="#" class="price-cta price-cta--solid">Start free trial</a>
+        </div>
+
+        <!-- Team -->
+        <div class="price-card">
+          <h3 class="price-tier">Team</h3>
+          <p class="price-amount">$20<span class="price-unit">/user/mo</span></p>
+          <p class="price-tagline">For collaborating engineering and security teams</p>
+          <ul class="price-list">
+            <li>Everything in Pro</li>
+            <li><strong>Real-time co-editing</strong></li>
+            <li>Team workspaces</li>
+            <li>Shared themes &amp; overlay libraries</li>
+            <li>Role-based access control</li>
+            <li>SSO (SAML 2.0, OIDC)</li>
+          </ul>
+          <a href="#" class="price-cta">Try with your team</a>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="price-card price-card--dark">
+          <h3 class="price-tier">Enterprise</h3>
+          <p class="price-amount">Custom</p>
+          <p class="price-tagline">For regulated organizations</p>
+          <ul class="price-list">
+            <li>Everything in Team</li>
+            <li><strong>Data residency &amp; sovereignty</strong></li>
+            <li>Self-hosted option</li>
+            <li>Audit logging &amp; export</li>
+            <li>BYO AI endpoint</li>
+            <li>Dedicated support &amp; SLA</li>
+          </ul>
+          <a href="#contact" class="price-cta">Contact sales</a>
+        </div>
+      </div>
+
+      <p class="mt-8 text-center text-sm text-slate-400">All paid plans include a 14-day trial. No credit card required to start. Cancel any time.</p>
+    </div>
+  </section>
+
+  <!-- ========== Demo CTA ========== -->
+  <section id="demo" class="py-20">
+    <div class="mx-auto max-w-5xl px-6 lg:px-8">
+      <div class="rounded-3xl bg-gradient-to-br from-brand-700 via-brand-600 to-fuchsia-600 p-10 sm:p-14 shadow-2xl shadow-brand-500/30 relative overflow-hidden">
+        <div class="absolute -top-20 -right-20 h-60 w-60 rounded-full bg-white/10 blur-2xl"></div>
+        <div class="absolute -bottom-20 -left-20 h-60 w-60 rounded-full bg-white/10 blur-2xl"></div>
+        <div class="relative grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <p class="text-sm font-mono tracking-widest text-brand-100">02:30 — THE NORTH STAR DEMO</p>
+            <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold leading-tight">From whiteboard to source code in three clicks.</h2>
+            <p class="mt-4 text-brand-100">Watch the eight beats: image import, brand theme, team share, security overlay, code-to-diagram, source navigation, finding triage, and the Grafana drill-down that ties it all together.</p>
+          </div>
+          <a href="#" class="relative aspect-video rounded-xl bg-ink-900/60 border border-white/20 overflow-hidden grid place-items-center group hover:bg-ink-900/40 transition">
+            <div class="grid place-items-center h-16 w-16 rounded-full bg-white text-ink-900 shadow-2xl group-hover:scale-110 transition">
+              <svg class="h-7 w-7 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9z"/></svg>
+            </div>
+            <span class="absolute bottom-3 right-4 text-xs font-mono text-white/80">02:30</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Open core ========== -->
+  <section id="open" class="py-20 bg-gradient-to-b from-transparent via-ink-800/40 to-transparent">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 grid lg:grid-cols-3 gap-10">
+      <div class="lg:col-span-1">
+        <h2 class="text-3xl font-extrabold tracking-tight">Open core, on purpose.</h2>
+        <p class="mt-4 text-slate-300">The CLI, the language spec, the MCP server, the LSP, and the editor extensions are all open source. The web app monetizes what's genuinely worth paying for: collaboration, AI, and enterprise controls.</p>
+        <a href="https://github.com/codi-dev/codi" class="mt-6 inline-flex items-center gap-2 text-brand-300 hover:text-brand-200 font-medium">View on GitHub →</a>
+      </div>
+      <div class="lg:col-span-2 grid sm:grid-cols-2 gap-4 text-sm">
+        <div class="open-card"><div class="open-license">Apache 2.0</div><h3>CLI · Core · MCP · LSP</h3><p>The whole local toolchain. Yours to fork, extend, embed.</p></div>
+        <div class="open-card"><div class="open-license">CC BY 4.0</div><h3>Language spec · Skill bundles</h3><p>Open standard. Use the format anywhere; teach any agent to author it.</p></div>
+        <div class="open-card"><div class="open-license">Apache 2.0</div><h3>Editor extensions · GitHub Action</h3><p>Every distribution surface ships open. Submit improvements, ship them everywhere at once.</p></div>
+        <div class="open-card"><div class="open-license">Source-available</div><h3>Web frontend</h3><p>Read it, audit it, build trust before you sign Enterprise.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Coming next (honesty panel) ========== -->
+  <section class="py-12">
+    <div class="mx-auto max-w-5xl px-6 lg:px-8">
+      <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-8">
+        <div class="flex items-start gap-4">
+          <span class="grid place-items-center h-10 w-10 shrink-0 rounded-lg bg-amber-300/20 text-amber-200 font-bold">→</span>
+          <div>
+            <h3 class="text-xl font-bold">Coming next, after 1.0</h3>
+            <p class="mt-2 text-slate-300">A few capabilities are explicitly Phase 4 — we'd rather flag them than fake them. Need any of these now? <a href="#contact" class="text-brand-300 hover:text-brand-200 font-medium">Talk to us about Enterprise</a> — most ship faster when there's a paying design partner driving the timeline.</p>
+            <ul class="mt-4 grid sm:grid-cols-2 gap-x-8 gap-y-2 text-sm text-slate-300">
+              <li>• Self-hosted deployment + region selection</li>
+              <li>• SOC 2 Type 2 + FedRAMP readiness</li>
+              <li>• Audit logging with compliance export</li>
+              <li>• Customer-managed JupyterHub (BYO kernel)</li>
+              <li>• Consulting-firm theme builder</li>
+              <li>• Optimized cross-diagram graph indexing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section id="docs" class="py-20">
+    <div class="mx-auto max-w-4xl px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Honest questions, honest answers.</h2>
+      <div class="mt-10 divide-y divide-white/5 border-y border-white/5">
+        <details class="faq">
+          <summary>Is this just another Mermaid?</summary>
+          <p>No. Mermaid has a custom grammar, no validation, no overlays, no live data. CoDi is valid YAML, so every YAML tool already understands it; it has typed validation per diagram type; overlays detect compliance violations programmatically; and live diagrams pull from your code, your JIRA, and your databases. The 60K Mermaid users are exactly who CoDi is for next.</p>
+        </details>
+        <details class="faq">
+          <summary>Will the CLI always be free?</summary>
+          <p>Yes. Apache 2.0, no telemetry-by-default, no feature paywalls inside the CLI. The web app is the revenue engine. The CLI is the adoption engine. They're explicitly designed to stay separate.</p>
+        </details>
+        <details class="faq">
+          <summary>How does the MCP server work with Cursor / Claude / Zed?</summary>
+          <p>Install the CLI, then add one entry to your agent's MCP config. The agent gains <code class="font-mono">codi.validate</code>, <code class="font-mono">codi.render</code>, <code class="font-mono">codi.lint</code>, and <code class="font-mono">codi.query</code>. It can author diagrams that round-trip with your repo, with feedback from the same validator the CLI runs. <a href="#docs" class="text-brand-300">Setup guide →</a></p>
+        </details>
+        <details class="faq">
+          <summary>What about my existing Draw.io / TMT / Structurizr files?</summary>
+          <p>One-click import for <code class="font-mono">.drawio</code>, <code class="font-mono">.tm7</code>, and <code class="font-mono">.tm8</code>. A guided importer for Structurizr DSL. Mermaid blocks in Markdown convert in the playground. Your diagrams come with you.</p>
+        </details>
+        <details class="faq">
+          <summary>Where does my data go?</summary>
+          <p>The CLI runs entirely on your machine; no network calls without your action. The web app stores data in our infrastructure by default; Enterprise tier supports region selection, BYO AI endpoints, BYO Jupyter kernels, and self-hosting. Telemetry in the CLI is opt-in, asked once. Full payload schema in our <a href="#" class="text-brand-300">security docs</a>.</p>
+        </details>
+        <details class="faq">
+          <summary>Can I use CoDi at work without IT approval?</summary>
+          <p>Yes. The CLI installs from your package manager and renders to local files. The Free web tier requires only an email. Most users get value from CoDi without a single procurement conversation; teams escalate to Pro / Team / Enterprise when they hit the natural feature lines.</p>
+        </details>
+        <details class="faq">
+          <summary>What languages does code-to-diagram support?</summary>
+          <p>At 1.0: TypeScript / JavaScript, Python, Rust, and Go for module dependency, class, and API-route extraction. SQL migrations and ORM definitions for ERD. Terraform and CloudFormation for infrastructure. New languages and frameworks ship via community-contributed query patterns — anyone can submit one with a test case.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Final CTA ========== -->
+  <section id="contact" class="py-24">
+    <div class="mx-auto max-w-4xl px-6 lg:px-8 text-center">
+      <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight">Stop drawing diagrams. <span class="bg-gradient-to-r from-brand-300 to-fuchsia-400 bg-clip-text text-transparent">Start querying them.</span></h2>
+      <p class="mt-6 text-lg text-slate-300">Install the CLI in one line. Render your first typed diagram in five seconds. Decide later whether you want everything else.</p>
+      <div class="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="#install" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-brand-500 hover:bg-brand-400 text-white font-semibold shadow-xl shadow-brand-500/30">Install the CLI</a>
+        <a href="#playground" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-white/5 hover:bg-white/10 text-white font-semibold border border-white/10">Try in browser</a>
+        <a href="mailto:hello@codi.dev" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-slate-300 hover:text-white font-medium">Talk to us →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="border-t border-white/5 py-12 bg-ink-900/50">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 grid sm:grid-cols-2 lg:grid-cols-5 gap-8 text-sm text-slate-400">
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-2">
+          <span class="grid place-items-center h-8 w-8 rounded-lg bg-gradient-to-br from-brand-400 to-brand-600 font-bold">C</span>
+          <span class="font-extrabold tracking-tight text-lg text-white">CoDi</span>
+        </div>
+        <p class="mt-3 max-w-sm">Architecture intelligence through diagrams as live queries over connected data.</p>
+        <p class="mt-6 text-xs text-slate-500">© 2026 CoDi. CLI is Apache 2.0. Language spec is CC BY 4.0.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-3">Product</h4>
+        <ul class="space-y-2"><li><a href="#install" class="hover:text-white">CLI</a></li><li><a href="#integrations" class="hover:text-white">Integrations</a></li><li><a href="#types" class="hover:text-white">Diagram types</a></li><li><a href="#pricing" class="hover:text-white">Pricing</a></li></ul>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-3">Resources</h4>
+        <ul class="space-y-2"><li><a href="#docs" class="hover:text-white">Docs</a></li><li><a href="#" class="hover:text-white">Playground</a></li><li><a href="#" class="hover:text-white">Gallery</a></li><li><a href="#" class="hover:text-white">Migration guides</a></li></ul>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-3">Company</h4>
+        <ul class="space-y-2"><li><a href="#" class="hover:text-white">Blog</a></li><li><a href="#" class="hover:text-white">Security</a></li><li><a href="https://github.com/codi-dev/codi" class="hover:text-white">GitHub</a></li><li><a href="mailto:hello@codi.dev" class="hover:text-white">Contact</a></li></ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
