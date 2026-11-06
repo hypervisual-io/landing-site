@@ -60,13 +60,27 @@
         <h2 id="example-title">One file in, one diagram out</h2>
         <p class="section-lead">
           Each file has one top-level <code>Name[type]</code> key and a list of nodes, edges and directives.
-          This sequence diagram is a real example from the HyperVisual skills, rendered by <code>hypervis</code> v0.1.0.
+          Edit the example and the diagram redraws as you type, right in your browser. Drag the boxes to move them.
         </p>
 
-        <div class="example">
-          <figure class="panel">
-            <figcaption class="panel-title">checkout-sequence.hvis</figcaption>
-            <pre class="code"><code>CheckoutSequence[sequence]:
+        <div class="live-editor" data-live-editor>
+          <div class="panel diagram-panel">
+            <div class="panel-title"><span>Diagram</span></div>
+            <div class="diagram" data-diagram>
+              <img src="assets/checkout-sequence.svg" width="1407" height="788"
+                   alt="Rendered sequence diagram. Lifelines for Customer, WebApp, CheckoutApi, PaymentSession and PaymentGateway. Customer clicks Place Order on WebApp, which posts to CheckoutApi. CheckoutApi validates the cart, creates a payment session, and asks PaymentGateway to authorize payment. The gateway replies authorized, the payment session is destroyed, and confirmations flow back to the Customer.">
+            </div>
+            <p class="diagram-note" data-diagram-note hidden>Showing the last version that worked. Fix the error below to update it.</p>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title">
+              <span>checkout-sequence.hvis</span>
+              <button type="button" class="panel-button" data-editor-reset hidden>Reset</button>
+            </div>
+            <div class="editor">
+              <pre class="editor-highlight" aria-hidden="true"><code data-editor-highlight></code></pre>
+              <textarea class="editor-input" data-editor-input aria-label="HyperVisual source" spellcheck="false" autocapitalize="off" autocomplete="off" wrap="off">CheckoutSequence[sequence]:
   - Customer[actor]
   - WebApp[service]
   - CheckoutApi[service]
@@ -83,18 +97,17 @@
   - destroy PaymentSession
   - reply WebApp &lt;-- CheckoutApi: "checkout accepted"
   - deactivate CheckoutApi
-  - reply Customer &lt;-- WebApp: "Order confirmed"</code></pre>
-          </figure>
-
-          <figure class="panel">
-            <figcaption class="panel-title">checkout-sequence.svg</figcaption>
-            <div class="render">
-              <img src="assets/checkout-sequence.svg" width="1407" height="788" loading="lazy"
-                   alt="Rendered sequence diagram. Lifelines for Customer, WebApp, CheckoutApi, PaymentSession and PaymentGateway. Customer clicks Place Order on WebApp, which posts to CheckoutApi. CheckoutApi validates the cart, creates a payment session, and asks PaymentGateway to authorize payment. The gateway replies authorized, the payment session is destroyed, and confirmations flow back to the Customer.">
+  - reply Customer &lt;-- WebApp: "Order confirmed"</textarea>
             </div>
-            <p class="render-link"><a href="assets/checkout-sequence.svg">Open the SVG at full size</a></p>
-          </figure>
+            <p class="editor-status" data-editor-status role="status">
+              The diagram shown is pre-rendered. Live editing needs JavaScript.
+            </p>
+          </div>
         </div>
+
+        <p class="editor-footnote">
+          The browser checks syntax as you type. <code>hypervis validate</code> also checks the rules for each diagram type.
+        </p>
 
         <pre class="code terminal" aria-label="Validate and render commands"><code>$ hypervis validate checkout-sequence.hvis
 OK: checkout-sequence.hvis (9 nodes, 8 edges)
@@ -188,5 +201,6 @@ cargo install hypervis</code></pre>
   </footer>
 
   <script src="app.js" defer></script>
+  <script src="editor.js" type="module"></script>
 </body>
 </html>

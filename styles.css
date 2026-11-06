@@ -186,29 +186,151 @@ h3 { font-size: 1.05rem; margin: 0 0 0.35rem; }
 }
 .copy:hover, .copy:focus-visible { color: var(--code-text); border-color: var(--code-muted); }
 
-/* Example */
-.example {
+/* Live editor (example section): the diagram on top at the full column
+   width, so it stays readable, and the source below it. */
+.live-editor {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 1.25rem;
-  margin-bottom: 1rem;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
 }
-.panel { margin: 0; min-width: 0; }
+.panel { margin: 0; min-width: 0; display: flex; flex-direction: column; }
 .panel-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 1.75rem;
   margin-bottom: 0.4rem;
   color: var(--muted);
   font: 0.85rem var(--mono);
 }
-.panel .code { margin: 0; font-size: 0.8rem; }
-.render {
-  overflow-x: auto;
-  padding: 0.5rem;
-  background: #fbfbfd;
+.panel-button {
+  padding: 0.1rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--muted);
+  font: 600 0.75rem/1.4 var(--sans);
+  cursor: pointer;
+}
+.panel-button:hover { color: var(--text); border-color: var(--muted); }
+
+/* The editor is a transparent textarea over a highlighted copy of its text.
+   Both must use identical font, padding and wrapping so the text lines up. */
+/* Tall enough to show every line (1.28rem per line, plus padding and room for
+   a horizontal scrollbar). editor.js keeps --editor-lines in step with the
+   source; 18 is the example's line count. */
+.editor {
+  position: relative;
+  height: clamp(8rem, calc(var(--editor-lines, 18) * 1.28rem + 2.55rem), 36rem);
+  background: var(--code-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.editor-highlight, .editor-input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border: 0;
+  font: 0.8rem/1.6 var(--mono);
+  letter-spacing: 0;
+  tab-size: 2;
+  white-space: pre;
+  overflow: auto;
+}
+/* The highlighted copy only follows the textarea's scrolling (editor.js), so
+   it shows no scrollbars of its own. */
+.editor-highlight { color: var(--code-text); pointer-events: none; overflow: hidden; }
+.editor-highlight code { font: inherit; }
+.editor-input {
+  width: 100%;
+  height: 100%;
+  resize: none;
+  background: transparent;
+  color: var(--code-text);
+  caret-color: var(--code-text);
+  outline: none;
+}
+.editor:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* Only once the highlighter runs does the textarea text become see-through. */
+.live-editor.is-live .editor-input { color: transparent; }
+.live-editor.is-live .editor-input::selection { background: rgba(185, 162, 255, 0.35); color: transparent; }
+.live-editor:not(.is-live) .editor-highlight { display: none; }
+
+.token-comment { color: #8b88a0; font-style: italic; }
+.token-string { color: #9fd98f; }
+.token-name { color: #cbb8ff; font-weight: 600; }
+.token-type { color: #8fc7ff; }
+.token-keyword { color: #ffb86b; }
+.token-arrow { color: #7fd8e8; }
+.token-key { color: #b9a2ff; }
+.token-number { color: #f5c26b; }
+.line-error {
+  background: rgba(248, 81, 73, 0.18);
+  text-decoration: underline wavy #ff6b6b;
+  text-decoration-skip-ink: none;
+  text-underline-offset: 3px;
+}
+
+.editor-status {
+  min-height: 3.2em;
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.editor-status.is-error { color: #d93d35; }
+@media (prefers-color-scheme: dark) {
+  .editor-status.is-error { color: #ff8a80; }
+}
+.editor-status .hint { display: block; color: var(--muted); }
+
+/* The panel takes the diagram's own shape. Very tall diagrams are capped so
+   they fit on screen; the space beside them takes the diagram's background
+   colour (set by editor.js), so no box shows inside the panel. */
+.diagram {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
 }
-.render img { display: block; width: 100%; min-width: 50rem; height: auto; }
-.render-link { margin: 0.4rem 0 0; font-size: 0.9rem; }
+.diagram img, .diagram svg { display: block; width: 100%; height: auto; max-height: 80vh; }
+.diagram img { object-fit: contain; }
+/* Touch screens keep normal scrolling over the diagram; dragging boxes is
+   for mouse and pen. */
+@media (pointer: fine) {
+  .diagram svg { touch-action: none; }
+}
+.diagram.is-over-node { cursor: grab; }
+.diagram.is-dragging { cursor: grabbing; }
+/* Floats over the bottom of the diagram, so showing it never pushes the
+   editor down while someone is typing. */
+.diagram-panel { position: relative; }
+.diagram-note {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100% - 2rem);
+  margin: 0;
+  padding: 0.3rem 0.75rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: #b7791f;
+  font-size: 0.85rem;
+  text-align: center;
+  pointer-events: none;
+}
+.diagram-note[hidden] { display: none; }
+@media (prefers-color-scheme: dark) {
+  .diagram-note { color: #f0b660; }
+}
+.editor-footnote { margin: 0 0 1rem; color: var(--muted); font-size: 0.85rem; }
 .terminal { color: var(--code-muted); }
 
 /* Feature list */
