@@ -1,0 +1,18 @@
+CheckoutSequence[sequence]:
+  - Customer[actor]
+  - WebApp[service]
+  - CheckoutApi[service]
+  - PaymentSession[object]
+  - PaymentGateway[service]
+  - note left of Customer: "Customer starts checkout"
+  - sync Customer -> WebApp: "Click Place Order"
+  - sync WebApp -> CheckoutApi: "POST /checkout"
+  - activate CheckoutApi
+  - self CheckoutApi -> CheckoutApi: "Validate cart"
+  - create CheckoutApi -> PaymentSession: "Create payment session"
+  - sync CheckoutApi -> PaymentGateway: "Authorize payment"
+  - reply CheckoutApi <-- PaymentGateway: "authorized"
+  - destroy PaymentSession
+  - reply WebApp <-- CheckoutApi: "checkout accepted"
+  - deactivate CheckoutApi
+  - reply Customer <-- WebApp: "Order confirmed"
