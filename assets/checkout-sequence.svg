@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1407" height="788" viewBox="0 0 1407 788">
+<defs>
+  <marker id="arrowhead-4D4B5A" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto-start-reverse" markerUnits="strokeWidth">
+    <path d="M0,0 L10,3.5 L0,7" fill="#4D4B5A" />
+  </marker>
+  <marker id="uml-triangle-4D4B5A" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse" markerUnits="strokeWidth">
+    <path d="M1,1 L11,6 L1,11 Z" fill="#FBFBFD" stroke="#4D4B5A" stroke-width="1.4" />
+  </marker>
+</defs>
+<rect x="0" y="0" width="1407" height="788" fill="#FBFBFD" />
+<rect x="105" y="80" width="170" height="64" rx="8" fill="#6D43D9" stroke="#3B2470" stroke-width="1.8" />
+<line x1="190" y1="144" x2="190" y2="756" stroke="#8A8796" stroke-width="2" stroke-dasharray="8,8" />
+<text x="190" y="112" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF">Customer</text>
+<rect x="368" y="80" width="170" height="64" rx="8" fill="#6D43D9" stroke="#3B2470" stroke-width="1.8" />
+<line x1="453" y1="144" x2="453" y2="756" stroke="#8A8796" stroke-width="2" stroke-dasharray="8,8" />
+<text x="453" y="112" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF">WebApp</text>
+<rect x="631" y="80" width="170" height="64" rx="8" fill="#6D43D9" stroke="#3B2470" stroke-width="1.8" />
+<line x1="716" y1="144" x2="716" y2="756" stroke="#8A8796" stroke-width="2" stroke-dasharray="8,8" />
+<text x="716" y="112" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF">CheckoutApi</text>
+<rect x="894" y="80" width="170" height="64" rx="8" fill="#6D43D9" stroke="#3B2470" stroke-width="1.8" />
+<line x1="979" y1="144" x2="979" y2="630" stroke="#8A8796" stroke-width="2" stroke-dasharray="8,8" />
+<text x="979" y="112" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF">PaymentSession</text>
+<rect x="1157" y="80" width="170" height="64" rx="8" fill="#6D43D9" stroke="#3B2470" stroke-width="1.8" />
+<line x1="1242" y1="144" x2="1242" y2="756" stroke="#8A8796" stroke-width="2" stroke-dasharray="8,8" />
+<text x="1242" y="112" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF">PaymentGateway</text>
+<rect x="708" y="395.1" width="16" height="278.1" rx="2" fill="#F1F1F6" stroke="#8A8796" stroke-width="1.8" />
+<line x1="962" y1="613" x2="996" y2="647" stroke="#1B1A22" stroke-width="2.6" />
+<line x1="996" y1="613" x2="962" y2="647" stroke="#1B1A22" stroke-width="2.6" />
+<path d="M 80 169 H 288 L 300 181 V 227 H 80 Z" fill="#DFF3B8" stroke="#2FA85A" stroke-width="1.8" />
+<text x="190" y="198" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="11" font-weight="normal" fill="#1B1A22">Customer starts checkout</text>
+<path d="M 190 306 L 453 306" fill="none" stroke="#4D4B5A" stroke-width="1.8" marker-end="url(#arrowhead-4D4B5A)" />
+<path d="M 196.5 318 L 250.75 318 L 255.75 306 L 260.75 318 L 315 318 Q 319 318 319 322 L 319 336 Q 319 340 315 340 L 196.5 340 Q 192.5 340 192.5 336 L 192.5 322 Q 192.5 318 196.5 318 Z" fill="#1B1A22" fill-opacity="0.92" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="1" />
+<text x="255.75" y="329" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#FFFFFF">Click Place Order</text>
+<path d="M 453 360 L 716 360" fill="none" stroke="#4D4B5A" stroke-width="1.8" marker-end="url(#arrowhead-4D4B5A)" />
+<path d="M 469.25 372 L 513.75 372 L 518.75 360 L 523.75 372 L 568.25 372 Q 572.25 372 572.25 376 L 572.25 390 Q 572.25 394 568.25 394 L 469.25 394 Q 465.25 394 465.25 390 L 465.25 376 Q 465.25 372 469.25 372 Z" fill="#1B1A22" fill-opacity="0.92" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="1" />
+<text x="518.75" y="383" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#FFFFFF">POST /checkout</text>
+<path d="M 716 414 L 750 414 Q 764 414 764 428 L 764 428 Q 764 442 750 442 L 716 442" fill="none" stroke="#4D4B5A" stroke-width="1.8" marker-end="url(#arrowhead-4D4B5A)" />
+<path d="M 780 410 L 872.5 410 Q 876.5 410 876.5 414 L 876.5 428 Q 876.5 432 872.5 432 L 780 432 Q 776 432 776 428 L 776 426 L 764 421 L 776 416 L 776 414 Q 776 410 780 410 Z" fill="#1B1A22" fill-opacity="0.92" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="1" />
+<text x="826.25" y="421" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#FFFFFF">Validate cart</text>
+<path d="M 716 468 L 979 468" fill="none" stroke="#4D4B5A" stroke-width="1.8" marker-end="url(#arrowhead-4D4B5A)" />
+<path d="M 837.75 480 L 908.25 480 L 913.25 468 L 918.25 480 L 988.75 480 Q 992.75 480 992.75 484 L 992.75 498 Q 992.75 502 988.75 502 L 837.75 502 Q 833.75 502 833.75 498 L 833.75 484 Q 833.75 480 837.75 480 Z" fill="#1B1A22" fill-opacity="0.92" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="1" />
+<text x="913.25" y="491" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#FFFFFF">Create payment session</text>
+<path d="M 716 522 L 1242 522" fill="none" stroke="#4D4B5A" stroke-width="1.8" marker-end="url(#arrowhead-4D4B5A)" />
+<path d="M 788.25 534 L 842.5 534 L 847.5 522 L 852.5 534 L 906.75 534 Q 910.75 534 910.75 538 L 910.75 552 Q 910.75 556 906.75 556 L 788.25 556 Q 784.25 556 784.25 552 L 784.25 538 Q 784.25 534 788.25 534 Z" fill="#1B1A22" fill-opacity="0.92" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="1" />
+<text x="847.5" y="545" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#FFFFFF">Authorize payment</text>
+<path d="M 1242 576 L 716 576" fill="none" stroke="#4D4B5A" stroke-width="1.8" stroke-dasharray="8,6" marker-end="url(#uml-triangle-4D4B5A)" />
+<path d="M 1074 542 L 1147 542 Q 1151 542 1151 546 L 1151 560 Q 1151 564 1147 564 L 1115.5 564 L 1110.5 576 L 1105.5 564 L 1074 564 Q 1070 564 1070 560 L 1070 546 Q 1070 542 1074 542 Z" fill="#1B1A22" fill-opacity="0.92" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="1" />
+<text x="1110.5" y="553" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#FFFFFF">authorized</text>
+<path d="M 716 630 L 453 630" fill="none" stroke="#4D4B5A" stroke-width="1.8" stroke-dasharray="8,6" marker-end="url(#uml-triangle-4D4B5A)" />
+<path d="M 459.5 596 L 578 596 Q 582 596 582 600 L 582 614 Q 582 618 578 618 L 523.75 618 L 518.75 630 L 513.75 618 L 459.5 618 Q 455.5 618 455.5 614 L 455.5 600 Q 455.5 596 459.5 596 Z" fill="#1B1A22" fill-opacity="0.92" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="1" />
+<text x="518.75" y="607" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#FFFFFF">checkout accepted</text>
+<path d="M 453 684 L 190 684" fill="none" stroke="#4D4B5A" stroke-width="1.8" stroke-dasharray="8,6" marker-end="url(#uml-triangle-4D4B5A)" />
+<path d="M 334.5 650 L 440 650 Q 444 650 444 654 L 444 668 Q 444 672 440 672 L 392.25 672 L 387.25 684 L 382.25 672 L 334.5 672 Q 330.5 672 330.5 668 L 330.5 654 Q 330.5 650 334.5 650 Z" fill="#1B1A22" fill-opacity="0.92" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="1" />
+<text x="387.25" y="661" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#FFFFFF">Order confirmed</text>
+</svg>
