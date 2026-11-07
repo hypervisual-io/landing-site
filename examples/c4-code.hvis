@@ -1,0 +1,30 @@
+# C4 code diagram: component scope, package, module, function, table, record.
+
+CheckoutPersistenceCode[c4-code]:
+  - CheckoutPersistenceComponent[component]:
+      scope: true
+      technology: "Rust component"
+      description: "Persists checkout state and emits audit records"
+  - PersistencePackage[package]:
+      - label: "checkout.persistence"
+      - RepositoryModule[module]:
+          description: "Groups persistence functions"
+      - SaveCheckout[function]:
+          description: "Stores checkout snapshots"
+      - CheckoutRow[database-table]:
+        - "checkout_id uuid primary key"
+        - "status text"
+        - "updated_at timestamptz"
+      - AuditRecord[record]:
+        - "+ checkoutId: Uuid"
+        - "+ status: CheckoutStatus"
+        - "+ changedAt: OffsetDateTime"
+  - RepositoryModule --> SaveCheckout:
+      type: dependency
+      label: "Calls save function"
+  - SaveCheckout --> CheckoutRow:
+      type: dependency
+      label: "Writes checkout row"
+  - SaveCheckout --> AuditRecord:
+      type: dependency
+      label: "Creates audit record"

@@ -1,0 +1,29 @@
+# Threat model with trust boundaries, external entity, processes, data store, and encrypted flows.
+
+PatientPortalThreats[threat-model]:
+  - PublicInternet[trust-boundary]:
+      - PatientBrowser[external-entity]:
+          description: "Patient device"
+          trust_level: untrusted
+  - ApplicationTier[trust-boundary]:
+      - ApiGateway[process]:
+          description: "Validates requests and routes traffic"
+      - PatientService[process]:
+          description: "Handles profile and appointment operations"
+  - DataTier[trust-boundary]:
+      - PatientDb[data-store]:
+          encrypted: true
+          description: "Stores PII and appointment data"
+  - PatientBrowser --> ApiGateway:
+      label: "HTTPS login and profile requests"
+      encrypted: true
+      authenticated: false
+      data_classification: pii
+  - ApiGateway --> PatientService:
+      label: "mTLS internal API calls"
+      encrypted: true
+      authenticated: true
+  - PatientService --> PatientDb:
+      label: "SQL over TLS"
+      encrypted: true
+      authenticated: true

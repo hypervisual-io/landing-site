@@ -10,6 +10,9 @@ import initEngine, {
 
 const REDRAW_DELAY_MS = 150;
 
+// The example that is already in the editor's HTML.
+const PAGE_EXAMPLE_FILE = 'assets/checkout-sequence.hvis';
+
 const liveEditor = document.querySelector('[data-live-editor]');
 if (liveEditor) {
   startLiveEditor(liveEditor);
@@ -22,8 +25,18 @@ async function startLiveEditor(root) {
   const resetButton = root.querySelector('[data-editor-reset]');
   const diagram = root.querySelector('[data-diagram]');
   const diagramNote = root.querySelector('[data-diagram-note]');
-  const exampleSource = input.value;
+  const fileName = root.querySelector('[data-editor-filename]');
+  // The diagram type cards further down the page, each naming its example file.
+  const typeCards = [...document.querySelectorAll('[data-example-file]')];
+  const typesHint = document.querySelector('[data-types-hint]');
   const darkColorScheme = window.matchMedia('(prefers-color-scheme: dark)');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  // Example sources already fetched, by file. defaultValue is the textarea's
+  // original text, even if the browser restored an edited one.
+  const exampleSources = new Map([[PAGE_EXAMPLE_FILE, input.defaultValue]]);
+  // The example in the editor; Reset goes back to it.
+  let currentExampleSource = input.defaultValue;
 
   // The scene is the engine's description of the drawn diagram: every box
   // with its position and size, and every arrow with its points.
@@ -42,6 +55,14 @@ async function startLiveEditor(root) {
 
   root.classList.add('is-live');
   resetButton.hidden = false;
+  for (const card of typeCards) {
+    card.disabled = false;
+    card.setAttribute('aria-pressed', String(card.dataset.exampleFile === PAGE_EXAMPLE_FILE));
+    card.addEventListener('click', () => openExampleFromCard(card));
+  }
+  if (typesHint) {
+    typesHint.hidden = false;
+  }
   fitEditorToSource();
   redrawFromSource();
 
@@ -56,12 +77,8 @@ async function startLiveEditor(root) {
     highlight.parentElement.scrollTop = input.scrollTop;
     highlight.parentElement.scrollLeft = input.scrollLeft;
   });
-  resetButton.addEventListener('click', () => {
-    input.value = exampleSource;
-    input.scrollTop = 0;
-    fitEditorToSource();
-    redrawFromSource();
-  });
+  resetButton.addEventListener('click', () => showSource(currentExampleSource));
+  root.addEventListener('animationend', () => root.classList.remove('is-switching'));
   darkColorScheme.addEventListener('change', redrawFromSource);
 
   diagram.addEventListener('pointerdown', startDrag);
@@ -74,6 +91,58 @@ async function startLiveEditor(root) {
   });
   diagram.addEventListener('pointerup', finishDrag);
   diagram.addEventListener('pointercancel', finishDrag);
+
+  async function openExampleFromCard(card) {
+    const file = card.dataset.exampleFile;
+    for (const otherCard of typeCards) {
+      otherCard.setAttribute('aria-pressed', String(otherCard === card));
+    }
+
+    let source = exampleSources.get(file);
+    if (source === undefined) {
+      setStatus('Loading the example…');
+      try {
+        const response = await fetch(file);
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        source = await response.text();
+      } catch (error) {
+        setStatus('That example could not be loaded.');
+        console.error(error);
+        return;
+      }
+      exampleSources.set(file, source);
+    }
+    // If another card was clicked while this example was loading, that later
+    // click wins.
+    if (card.getAttribute('aria-pressed') !== 'true') {
+      return;
+    }
+    currentExampleSource = source;
+    fileName.textContent = file.split('/').pop();
+    showSource(source);
+    // Scroll only after the new diagram is drawn: it changes the window's
+    // height, and scrolling first would aim at the old layout.
+    root.scrollIntoView({ behavior: reducedMotion.matches ? 'auto' : 'smooth', block: 'start' });
+    pulseEditorWindow();
+  }
+
+  function showSource(source) {
+    clearTimeout(redrawTimer);
+    input.value = source;
+    input.scrollTop = 0;
+    input.scrollLeft = 0;
+    fitEditorToSource();
+    redrawFromSource();
+  }
+
+  function pulseEditorWindow() {
+    root.classList.remove('is-switching');
+    // Reading the width restarts the animation when the class is re-added.
+    void root.offsetWidth;
+    root.classList.add('is-switching');
+  }
 
   function redrawFromSource() {
     const source = input.value;
@@ -91,7 +160,7 @@ async function startLiveEditor(root) {
     if (errors.length > 0) {
       setErrorStatus(errors[0]);
     } else {
-      setStatus('No syntax errors. Drag the boxes to move them.');
+      setOkStatus('No syntax errors. Drag the boxes to move them.');
     }
 
     if (analysis.ok && analysis.scene) {
@@ -213,12 +282,20 @@ async function startLiveEditor(root) {
     diagram.classList.toggle('is-over-node', draggableNodeAt(drawnScene, point) !== null);
   }
 
+  // The status bar's dot is grey for plain messages, green for setOkStatus
+  // and red for setErrorStatus (see .editor-status in styles.css).
   function setStatus(message) {
-    status.classList.remove('is-error');
+    status.classList.remove('is-error', 'is-ok');
     status.textContent = message;
   }
 
+  function setOkStatus(message) {
+    setStatus(message);
+    status.classList.add('is-ok');
+  }
+
   function setErrorStatus(diagnostic) {
+    status.classList.remove('is-ok');
     status.classList.add('is-error');
     const line = diagnosticLine(diagnostic);
     const column = diagnostic.range?.start_column ?? diagnostic.column ?? null;

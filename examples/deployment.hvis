@@ -1,0 +1,57 @@
+# Kubernetes-first deployment map for a production web platform.
+
+ProductionDeployment[deployment]:
+  - layout:
+      direction: LR
+  - Internet[external-system]:
+      description: "Public clients"
+  - Cloud[cloud]:
+      - provider: generic
+      - environment: prod
+      - EuRegion[region]:
+          - label: "EU region"
+          - AppNetwork[network]:
+              - AppCluster[cluster]:
+                  - platform: kubernetes
+                  - WebNamespace[namespace]:
+                      - PublicIngress[ingress]:
+                          public: true
+                      - WebService[service]
+                      - WebApp[deployment]:
+                          replicas: 3
+                          image: "registry.example.com/web:1.4.2"
+                      - ApiService[service]
+                      - Api[deployment]:
+                          replicas: 4
+                          image: "registry.example.com/api:2.8.0"
+                  - DataNamespace[namespace]:
+                      - Postgres[database]:
+                          managed: true
+                          encrypted: true
+                      - Redis[cache]:
+                          managed: true
+  - Internet --> PublicIngress:
+      type: routes-to
+      protocol: HTTPS
+      port: 443
+      encrypted: true
+      direction: ingress
+  - PublicIngress --> WebService:
+      type: routes-to
+      protocol: HTTPS
+      encrypted: true
+  - WebService --> WebApp:
+      type: routes-to
+  - WebApp --> ApiService:
+      type: calls
+      protocol: HTTPS
+      encrypted: true
+  - ApiService --> Api:
+      type: routes-to
+  - Api --> Postgres:
+      type: reads-from
+      protocol: TCP
+      encrypted: true
+  - Api --> Redis:
+      type: reads-from
+      protocol: TCP

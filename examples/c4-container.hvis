@@ -1,0 +1,38 @@
+# C4 container diagram: users, scoped system boundary, containers, database, and integrations.
+
+CheckoutPlatform[c4-container]:
+  - Shopper[person]: "Buys products"
+  - CheckoutPlatform[software-system]:
+      scope: true
+      description: "Handles checkout, payment, and order creation"
+  - CheckoutBoundary[system-boundary]:
+      - label: "Checkout Platform"
+      - WebApp[container]:
+          technology: "React"
+          description: "Collects cart, shipping, and payment details"
+      - CheckoutApi[container]:
+          technology: "Rust/Axum"
+          description: "Coordinates checkout workflow"
+      - OrderWorker[container]:
+          technology: "Rust worker"
+          description: "Creates orders and publishes events"
+      - CheckoutDb[database]:
+          technology: "PostgreSQL"
+          description: "Stores checkout sessions"
+  - PaymentGateway[external-software-system]: "External payment processor"
+  - Shopper --> WebApp: "Submits checkout"
+  - WebApp --> CheckoutApi:
+      label: "Sends checkout commands"
+      protocol: "HTTPS/JSON"
+  - CheckoutApi --> CheckoutDb:
+      label: "Reads and writes checkout state"
+      protocol: "SQL/TLS"
+  - CheckoutApi --> PaymentGateway:
+      label: "Authorizes payment"
+      protocol: "HTTPS"
+  - CheckoutApi --> OrderWorker:
+      label: "Queues order creation"
+      protocol: "AMQP"
+  - OrderWorker --> CheckoutDb:
+      label: "Marks checkout complete"
+      protocol: "SQL/TLS"
