@@ -15,6 +15,8 @@
   <meta property="og:title" content="HyperVisual: architecture diagrams that validate themselves">
   <meta property="og:description" content="Typed YAML diagrams, a CLI that validates and renders them, and the same tools for AI agents over MCP. Early preview, Apache-2.0.">
 
+  <link rel="preload" href="assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -75,7 +77,7 @@
 
           <div class="panel">
             <div class="panel-title">
-              <span>checkout-sequence.hvis</span>
+              <span data-editor-filename>checkout-sequence.hvis</span>
               <button type="button" class="panel-button" data-editor-reset hidden>Reset</button>
             </div>
             <div class="editor">
@@ -109,10 +111,10 @@
           The browser checks syntax as you type. <code>hypervis validate</code> also checks the rules for each diagram type.
         </p>
 
-        <pre class="code terminal" aria-label="Validate and render commands"><code>$ hypervis validate checkout-sequence.hvis
-OK: checkout-sequence.hvis (9 nodes, 8 edges)
-$ hypervis render checkout-sequence.hvis --format svg -o checkout-sequence.svg
-Rendered 8 nodes, 8 edges → checkout-sequence.svg</code></pre>
+        <pre class="code terminal" aria-label="Validate and render commands"><code><span class="code-prompt">$</span> <span class="code-command">hypervis</span> validate checkout-sequence.hvis
+<span class="code-output">OK: checkout-sequence.hvis (9 nodes, 8 edges)</span>
+<span class="code-prompt">$</span> <span class="code-command">hypervis</span> render checkout-sequence.hvis <span class="code-flag">--format</span> svg <span class="code-flag">-o</span> checkout-sequence.svg
+<span class="code-output">Rendered 8 nodes, 8 edges → checkout-sequence.svg</span></code></pre>
       </div>
     </section>
 
@@ -121,11 +123,26 @@ Rendered 8 nodes, 8 edges → checkout-sequence.svg</code></pre>
         <h2 id="cli-title">What the CLI does</h2>
         <p class="section-lead">One binary, <code>hypervis</code>, also installed as the short alias <code>hvis</code>.</p>
         <ul class="features">
-          <li><h3><code>validate</code></h3><p>Parses the file and checks it against the rules for its diagram type, reporting diagnostics.</p></li>
-          <li><h3><code>render</code></h3><p>Lays out and renders the diagram to SVG or PNG.</p></li>
-          <li><h3><code>diff</code></h3><p>Compares two versions of a diagram and shows what changed.</p></li>
-          <li><h3><code>scan</code></h3><p>Scans a source directory and generates a class diagram from the code.</p></li>
-          <li><h3><code>mcp</code></h3><p>Runs an MCP server over stdio so AI agents can use the same tools.</p></li>
+          <li>
+            <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg></span>
+            <h3><code>validate</code></h3><p>Parses the file and checks it against the rules for its diagram type, reporting diagnostics.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m21 16-5-5-9 9"/></svg></span>
+            <h3><code>render</code></h3><p>Lays out and renders the diagram to SVG or PNG.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v14"/><path d="M5 10h14"/><path d="M5 21h14"/></svg></span>
+            <h3><code>diff</code></h3><p>Compares two versions of a diagram and shows what changed.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
+            <h3><code>scan</code></h3><p>Scans a source directory and generates a class diagram from the code.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/></svg></span>
+            <h3><code>mcp</code></h3><p>Runs an MCP server over stdio so AI agents can use the same tools.</p>
+          </li>
         </ul>
       </div>
     </section>
@@ -134,12 +151,12 @@ Rendered 8 nodes, 8 edges → checkout-sequence.svg</code></pre>
       <div class="wrap">
         <h2 id="install-title">Install</h2>
         <p class="section-lead">With a package manager, which also handles updates:</p>
-        <pre class="code"><code>npx hypervis help            # no install
-pipx install hypervis
-cargo install hypervis</code></pre>
+        <pre class="code"><code><span class="code-command">npx</span> hypervis help            <span class="code-comment"># no install</span>
+<span class="code-command">pipx</span> install hypervis
+<span class="code-command">cargo</span> install hypervis</code></pre>
 
         <p class="section-lead">Or with the install script, which puts <code>hypervis</code> and <code>hvis</code> in <code>~/.local/bin</code>:</p>
-        <pre class="code"><code>curl -fsSL https://raw.githubusercontent.com/hypervisual-io/hypervisual/main/install.sh | sh</code></pre>
+        <pre class="code"><code><span class="code-command">curl</span> <span class="code-flag">-fsSL</span> <span class="code-string">https://raw.githubusercontent.com/hypervisual-io/hypervisual/main/install.sh</span> <span class="code-operator">|</span> <span class="code-command">sh</span></code></pre>
 
         <ul class="notes">
           <li>Prebuilt for macOS arm64 and Linux x86_64/arm64. Binaries are also attached to each <a href="https://github.com/hypervisual-io/hypervisual/releases">GitHub release</a>.</li>
@@ -151,20 +168,33 @@ cargo install hypervis</code></pre>
     <section class="section" id="agents" aria-labelledby="agents-title">
       <div class="wrap">
         <h2 id="agents-title">Use it from AI agents</h2>
-        <div class="columns">
-          <div>
+        <div class="agent-row">
+          <div class="agent-text">
             <h3>MCP server</h3>
             <p><code>hypervis mcp</code> serves validate, render, expand, diff and scan over stdio. These configs only need Node.</p>
-            <p class="label">Claude Code</p>
-            <pre class="code"><code>claude mcp add hypervisual -- npx -y hypervis mcp</code></pre>
-            <p class="label">Cursor (<code>.cursor/mcp.json</code>) or any client using the same format</p>
-            <pre class="code"><code>{ "mcpServers": { "hypervisual": { "command": "npx", "args": ["-y", "hypervis", "mcp"] } } }</code></pre>
           </div>
-          <div>
+          <div class="agent-code">
+            <p class="label">Claude Code</p>
+            <pre class="code"><code><span class="code-command">claude</span> mcp add hypervisual <span class="code-operator">--</span> <span class="code-command">npx</span> <span class="code-flag">-y</span> hypervis mcp</code></pre>
+            <p class="label">Cursor (<code>.cursor/mcp.json</code>) or any client using the same format</p>
+            <pre class="code"><code>{
+  <span class="code-key">"mcpServers"</span>: {
+    <span class="code-key">"hypervisual"</span>: {
+      <span class="code-key">"command"</span>: <span class="code-string">"npx"</span>,
+      <span class="code-key">"args"</span>: [<span class="code-string">"-y"</span>, <span class="code-string">"hypervis"</span>, <span class="code-string">"mcp"</span>]
+    }
+  }
+}</code></pre>
+          </div>
+        </div>
+        <div class="agent-row">
+          <div class="agent-text">
             <h3>Agent skills</h3>
             <p>Installs <code>hypervis-cli</code> (shared workflow and grammar) plus one skill per diagram type, with references and examples.</p>
-            <pre class="code"><code>npx skills add hypervisual-io/hypervisual</code></pre>
             <p>You can also copy the folders under <a href="https://github.com/hypervisual-io/hypervisual/tree/main/skills"><code>skills/</code></a> into your agent's skills directory.</p>
+          </div>
+          <div class="agent-code">
+            <pre class="code"><code><span class="code-command">npx</span> skills add hypervisual-io/hypervisual</code></pre>
           </div>
         </div>
       </div>
@@ -173,21 +203,21 @@ cargo install hypervis</code></pre>
     <section class="section" id="types" aria-labelledby="types-title">
       <div class="wrap">
         <h2 id="types-title">Diagram types</h2>
-        <p class="section-lead">One grammar, with a vocabulary and rules for each type. Every type has its own agent skill.</p>
+        <p class="section-lead">One grammar, with a vocabulary and rules for each type. Every type has its own agent skill.<span data-types-hint hidden> Click one to try it in the editor above.</span></p>
         <ul class="types">
-          <li><code>c4-context</code><span>Your system, its users and the systems around it</span></li>
-          <li><code>c4-container</code><span>Deployable containers inside one system</span></li>
-          <li><code>c4-component</code><span>Components inside one container</span></li>
-          <li><code>c4-code</code><span>Classes, functions and modules inside one component</span></li>
-          <li><code>sequence</code><span>Ordered interactions between participants</span></li>
-          <li><code>class</code><span>Classes, interfaces, enums and packages</span></li>
-          <li><code>activity</code><span>Actions, object flows, swimlanes, forks and joins</span></li>
-          <li><code>state-machine</code><span>States, transitions, composite states and history</span></li>
-          <li><code>threat-model</code><span>STRIDE-compatible data flows with trust boundaries</span></li>
-          <li><code>deployment</code><span>Clouds, networks, clusters and workloads</span></li>
-          <li><code>flowchart</code><span>Processes with decisions, stages and groups</span></li>
-          <li><code>gantt</code><span>Tasks, milestones, dependencies and critical path</span></li>
-          <li><code>unstructured</code><span>Freeform concept maps and sketches</span></li>
+          <li><button type="button" class="type-card" data-example-file="examples/c4-context.hvis" disabled><code>c4-context</code><span>Your system, its users and the systems around it</span></button></li>
+          <li><button type="button" class="type-card" data-example-file="examples/c4-container.hvis" disabled><code>c4-container</code><span>Deployable containers inside one system</span></button></li>
+          <li><button type="button" class="type-card" data-example-file="examples/c4-component.hvis" disabled><code>c4-component</code><span>Components inside one container</span></button></li>
+          <li><button type="button" class="type-card" data-example-file="examples/c4-code.hvis" disabled><code>c4-code</code><span>Classes, functions and modules inside one component</span></button></li>
+          <li><button type="button" class="type-card" data-example-file="assets/checkout-sequence.hvis" disabled><code>sequence</code><span>Ordered interactions between participants</span></button></li>
+          <li><button type="button" class="type-card" data-example-file="examples/class.hvis" disabled><code>class</code><span>Classes, interfaces, enums and packages</span></button></li>
+          <li><button type="button" class="type-card" data-example-file="examples/activity.hvis" disabled><code>activity</code><span>Actions, object flows, swimlanes, forks and joins</span></button></li>
+          <li><button type="button" class="type-card" data-example-file="examples/state-machine.hvis" disabled><code>state-machine</code><span>States, transitions, composite states and history</span></button></li>
+          <li><button type="button" class="type-card" data-example-file="examples/threat-model.hvis" disabled><code>threat-model</code><span>STRIDE-compatible data flows with trust boundaries</span></button></li>
+          <li><button type="button" class="type-card" data-example-file="examples/deployment.hvis" disabled><code>deployment</code><span>Clouds, networks, clusters and workloads</span></button></li>
+          <li><button type="button" class="type-card" data-example-file="examples/flowchart.hvis" disabled><code>flowchart</code><span>Processes with decisions, stages and groups</span></button></li>
+          <li><button type="button" class="type-card" data-example-file="examples/gantt.hvis" disabled><code>gantt</code><span>Tasks, milestones, dependencies and critical path</span></button></li>
+          <li><button type="button" class="type-card" data-example-file="examples/unstructured.hvis" disabled><code>unstructured</code><span>Freeform concept maps and sketches</span></button></li>
         </ul>
       </div>
     </section>

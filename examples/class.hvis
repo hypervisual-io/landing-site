@@ -1,0 +1,25 @@
+# Class diagram with classes, interface, enum, members, and implementation.
+
+NotificationModel[class]:
+  - Notification[class]:
+      - "+ id: UUID"
+      - "+ recipient: String"
+      - "+ status: DeliveryStatus"
+      - "+ send(): Boolean"
+      - "- validateRecipient(): void"
+  - DeliveryChannel[interface]:
+      - "+ send(notification: Notification): Boolean"
+      - "+ supports(recipient: String): boolean"
+  - EmailChannel[class]:
+      - "- apiKey: String"
+      - "+ send(notification: Notification): Boolean"
+      - "+ supports(recipient: String): boolean"
+  - DeliveryStatus[enum]:
+      - PENDING
+      - SENT
+      - FAILED
+  - EmailChannel --> DeliveryChannel:
+      type: implements
+  - Notification --> DeliveryStatus:
+      type: association
+      label: "tracks"

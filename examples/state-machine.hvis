@@ -1,0 +1,18 @@
+# Basic state machine with initial/final states, triggers, guards, and actions.
+
+OrderLifecycle[state-machine]:
+  - initial --> Draft
+  - Draft[state]:
+      entry_action: "createOrderNumber"
+      exit_action: "snapshotCart"
+  - Draft --> Submitted:
+      trigger: "submit"
+      guard: "cart is not empty"
+      action: "reserveInventory"
+  - Submitted[state]
+  - Submitted --> Paid:
+      trigger: "paymentCaptured"
+      action: "sendReceipt"
+  - Paid[state]
+  - Paid --> final:
+      trigger: "fulfilled"

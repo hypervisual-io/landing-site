@@ -1,0 +1,36 @@
+# C4 component diagram: container scope, component boundary, external systems, protocols.
+
+CheckoutApiComponents[c4-component]:
+  - CheckoutApi[container]:
+      scope: true
+      technology: "Rust/Axum"
+      description: "Coordinates checkout workflow"
+  - CheckoutApiBoundary[container-boundary]:
+      - label: "Checkout API"
+      - CheckoutController[component]:
+          technology: "Axum route"
+          description: "Accepts checkout commands"
+      - CartValidator[component]:
+          technology: "Rust module"
+          description: "Checks cart totals and item availability"
+      - PaymentClient[component]:
+          technology: "HTTP client"
+          description: "Calls payment provider"
+      - OrderPublisher[component]:
+          technology: "Kafka producer"
+          description: "Publishes order creation events"
+  - WebApp[container]: "Checkout user interface"
+  - PaymentGateway[external-software-system]: "Payment authorization service"
+  - OrderTopic[external-software-system]: "Order event stream"
+  - WebApp --> CheckoutController:
+      label: "POST /checkout"
+      protocol: "HTTPS"
+  - CheckoutController --> CartValidator: "Validates cart"
+  - CheckoutController --> PaymentClient: "Authorizes payment"
+  - PaymentClient --> PaymentGateway:
+      label: "Payment authorization"
+      protocol: "HTTPS"
+  - CheckoutController --> OrderPublisher: "Publishes accepted checkout"
+  - OrderPublisher --> OrderTopic:
+      label: "OrderCreated event"
+      protocol: "Kafka"

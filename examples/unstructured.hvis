@@ -1,0 +1,27 @@
+# Unstructured diagram with open node types, groups, nesting, and readable labels.
+
+ServiceOwnership[unstructured]:
+  - layout:
+      algorithm: organic
+      direction: LR
+      node_gap: 72
+  - PlatformTeam[group]:
+      - label: "Platform Team"
+      - style:
+          fill: "#eff6ff"
+          stroke: "#2563eb"
+      - DeploymentPipeline[service]
+      - KubernetesCluster[cluster]
+      - Observability[tool]
+  - CheckoutTeam[group]:
+      - label: "Checkout Team"
+      - style:
+          fill: "#ecfdf5"
+          stroke: "#16a34a"
+      - WebApp[service]
+      - CheckoutApi[service]
+      - PaymentAdapter[service]
+  - WebApp --> CheckoutApi: "calls"
+  - CheckoutApi --> PaymentAdapter: "authorizes payments"
+  - DeploymentPipeline --> KubernetesCluster: "deploys"
+  - Observability --> CheckoutApi: "collects telemetry"

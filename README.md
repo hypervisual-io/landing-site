@@ -18,6 +18,8 @@ GitHub Pages serves the repository root from `main`. `CNAME` sets the custom dom
   cp crates/hvis-core/pkg/hvis_core.js crates/hvis-core/pkg/hvis_core_bg.wasm ../landing-site/engine/
   ```
 
+- `examples/`: one example per diagram type, loaded into the live editor when someone clicks that type's card in the "Diagram types" section. Each is a copy of `skills/hypervis-<type>/references/examples/01-*.hvis` in the product repo; the sequence card uses `assets/checkout-sequence.hvis`. Each card names its file in `data-example-file` in `index.html`.
+- `assets/fonts/`: Inter and JetBrains Mono (variable, Latin subset), served from this site so the page makes no requests elsewhere. Both are under the SIL Open Font License; their licence texts sit next to the font files. Taken from the `@fontsource-variable/inter` and `@fontsource-variable/jetbrains-mono` npm packages (v5.3.0).
 - `favicon.svg`: site icon.
 - `assets/checkout-sequence.hvis`: example shown on the page, copied from `skills/hypervis-sequence/references/examples/` in the product repo.
 - `assets/checkout-sequence.svg`: its render, shown until the live editor loads. After changing the example, re-render it and update the source in the editor's `<textarea>` in `index.html`:

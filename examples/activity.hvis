@@ -1,0 +1,24 @@
+# Activity control flow with initial, decision, fork, join, flow final, and activity final.
+
+OrderApproval[activity]:
+  - start[initial-node]
+  - ReceiveOrder[action]: "Receive order"
+  - CheckStock[action]: "Check inventory"
+  - StockDecision[decision-node]
+  - Backorder[flow-final-node]
+  - SplitWork[fork-node]
+  - ReserveStock[action]
+  - ChargePayment[action]
+  - SyncWork[join-node]
+  - Complete[activity-final-node]
+  - start --> ReceiveOrder
+  - ReceiveOrder --> CheckStock
+  - CheckStock --> StockDecision
+  - StockDecision --> Backorder: "[out of stock]"
+  - StockDecision --> SplitWork: "[in stock]"
+  - SplitWork --> ReserveStock
+  - SplitWork --> ChargePayment
+  - ReserveStock --> SyncWork
+  - ChargePayment --> SyncWork
+  - SyncWork --> Complete
+
