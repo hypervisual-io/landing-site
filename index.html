@@ -45,7 +45,7 @@
       <div class="wrap hero-grid">
         <div class="hero-text">
           <p class="badge">Early preview · Apache-2.0</p>
-          <h1 id="hero-title">Collaborate on architecture, not code.</h1>
+          <h1 id="hero-title">Collaborate on architecture,<br> not code.</h1>
           <p class="lead">
             Diagrams as typed YAML <code>.hvis</code> files, validated semantically. The
             <code>hypervis</code> CLI checks them, renders SVG or PNG, diffs and queries them,
@@ -59,13 +59,19 @@
         <div class="hero-visual">
           <figure class="hero-card hero-card-back">
             <figcaption class="panel-title"><a href="assets/hero-c4-context.hvis">c4-context</a></figcaption>
-            <img src="assets/hero-c4-context.svg" width="1108" height="780"
-                 alt="C4 context diagram. A data analyst and a product manager use the AnalyticsPlatform, which reads from an external event bus and writes to a data warehouse and Slack.">
+            <picture>
+              <source srcset="assets/hero-c4-context-dark.svg" media="(prefers-color-scheme: dark)">
+              <img src="assets/hero-c4-context.svg" width="1108" height="780"
+                   alt="C4 context diagram. A data analyst and a product manager use the AnalyticsPlatform, which reads from an external event bus and writes to a data warehouse and Slack.">
+            </picture>
           </figure>
           <figure class="hero-card hero-card-front">
             <figcaption class="panel-title"><a href="assets/hero-threat-model.hvis">threat-model · query overlay</a></figcaption>
-            <img src="assets/hero-threat-model.svg" width="1537" height="980"
-                 alt="Threat model with Internet, App and Data trust boundaries. A query highlights in red the one flow where the untrusted browser writes straight to the card vault, skipping the API and billing processes.">
+            <picture>
+              <source srcset="assets/hero-threat-model-dark.svg" media="(prefers-color-scheme: dark)">
+              <img src="assets/hero-threat-model.svg" width="1537" height="980"
+                   alt="Threat model with Internet, App and Data trust boundaries. A query highlights in red the one flow where the untrusted browser writes straight to the card vault, skipping the API and billing processes.">
+            </picture>
           </figure>
         </div>
       </div>
