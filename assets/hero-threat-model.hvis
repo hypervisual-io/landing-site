@@ -1,0 +1,29 @@
+PaymentsThreats[threat-model]:
+  - Internet[trust-boundary]:
+      - Browser[external-entity]:
+          description: "Customer device"
+  - App[trust-boundary]:
+      - Api[process]:
+          description: "Validates and routes"
+      - Billing[process]:
+          description: "Charges cards"
+  - Data[trust-boundary]:
+      - CardVault[data-store]:
+          encrypted: true
+          description: "Tokenised cards"
+  - Browser --> Api:
+      label: "HTTPS"
+      encrypted: true
+  - Api --> Billing:
+      label: "mTLS"
+      encrypted: true
+  - Billing --> CardVault:
+      label: "SQL/TLS"
+      encrypted: true
+  - Browser --> CardVault:
+      label: "Direct upload"
+      encrypted: true
+overlay:
+  SkipsValidation:
+    query: "[external-entity] -> [data-store]"
+    note: "Untrusted input reaches stored cards"

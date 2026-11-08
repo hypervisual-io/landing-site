@@ -1,0 +1,17 @@
+# SaaS context: people, scoped system, external systems, and labeled relationships.
+
+AnalyticsPlatform[c4-context]:
+  - DataAnalyst[person]: "Builds dashboards and investigates metric anomalies"
+  - ProductManager[person]: "Reviews product KPIs and scheduled reports"
+  - AnalyticsPlatform[system]:
+      scope: true
+      description: "Ingests product events and serves analytics"
+  - EventBus[system, external]: "Kafka event bus owned by product teams"
+  - DataWarehouse[system, external]: "Warehouse for modeled analytical tables"
+  - Slack[system, external]: "Receives metric threshold alerts"
+  - DataAnalyst --> AnalyticsPlatform: "Creates dashboards and SQL explorations"
+  - ProductManager --> AnalyticsPlatform: "Views dashboards and exports reports"
+  - EventBus --> AnalyticsPlatform: "Streams product events"
+  - AnalyticsPlatform --> DataWarehouse: "Writes transformed tables"
+  - AnalyticsPlatform --> Slack: "Sends alert notifications"
+
