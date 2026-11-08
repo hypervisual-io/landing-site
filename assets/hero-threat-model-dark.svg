@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1537" height="980" viewBox="-45 0 1537 980">
+<defs>
+  <marker id="arrowhead-B8B5C8" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto-start-reverse" markerUnits="strokeWidth">
+    <path d="M0,0 L10,3.5 L0,7" fill="#B8B5C8" />
+  </marker>
+  <marker id="arrowhead-FF2D2D" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto-start-reverse" markerUnits="strokeWidth">
+    <path d="M0,0 L10,3.5 L0,7" fill="#FF2D2D" />
+  </marker>
+</defs>
+<rect x="-45" y="0" width="1537" height="980" fill="#161521" />
+<g id="node-Internet" class="hvis-node hvis-group hvis-type-trust-boundary hvis-dimmed" data-hvis-name="Internet" data-hvis-type="trust-boundary" data-hvis-shape="trust-boundary">
+<g opacity="0.35">
+<rect x="80" y="80" width="302" height="210" rx="12" fill="rgba(42,146,181,0.08)" stroke="#2A92B5" stroke-width="1.8" stroke-dasharray="8,5" />
+<path d="M 80 126 H 382 V 80 Q 382 80 370 80 H 92 Q 80 80 80 92 Z" fill="#2A92B5" opacity="0.45" />
+<line x1="80" y1="126" x2="382" y2="126" stroke="#2A92B5" stroke-width="1.35" opacity="0.55" />
+</g>
+</g>
+<g id="node-App" class="hvis-node hvis-group hvis-type-trust-boundary hvis-dimmed" data-hvis-name="App" data-hvis-type="trust-boundary" data-hvis-shape="trust-boundary">
+<g opacity="0.35">
+<rect x="700" y="80" width="712" height="210" rx="12" fill="rgba(42,146,181,0.08)" stroke="#2A92B5" stroke-width="1.8" stroke-dasharray="8,5" />
+<path d="M 700 126 H 1412 V 80 Q 1412 80 1400 80 H 712 Q 700 80 700 92 Z" fill="#2A92B5" opacity="0.45" />
+<line x1="700" y1="126" x2="1412" y2="126" stroke="#2A92B5" stroke-width="1.35" opacity="0.55" />
+</g>
+</g>
+<g id="node-Data" class="hvis-node hvis-group hvis-type-trust-boundary hvis-dimmed" data-hvis-name="Data" data-hvis-type="trust-boundary" data-hvis-shape="trust-boundary">
+<g opacity="0.35">
+<rect x="80" y="600" width="302" height="210" rx="12" fill="rgba(42,146,181,0.08)" stroke="#2A92B5" stroke-width="1.8" stroke-dasharray="8,5" />
+<path d="M 80 646 H 382 V 600 Q 382 600 370 600 H 92 Q 80 600 80 612 Z" fill="#2A92B5" opacity="0.45" />
+<line x1="80" y1="646" x2="382" y2="646" stroke="#2A92B5" stroke-width="1.35" opacity="0.55" />
+</g>
+</g>
+<g id="node-Browser" class="hvis-node hvis-type-external-entity hvis-overlay hvis-overlay-SkipsValidation" data-hvis-name="Browser" data-hvis-type="external-entity" data-hvis-shape="dfd-external-entity" data-hvis-parent="Internet" data-hvis-overlay="SkipsValidation">
+<rect x="136" y="156" width="190" height="78" rx="2" fill="#1E1C2B" stroke="#FF2D2D" stroke-width="3.5" />
+<text x="231" y="186.25" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#EDECF5">Browser</text>
+<text x="231" y="205.125" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="normal" fill="#EDECF5">Customer device</text>
+</g>
+<g id="node-Api" class="hvis-node hvis-type-process hvis-dimmed" data-hvis-name="Api" data-hvis-type="process" data-hvis-shape="dfd-process" data-hvis-parent="App">
+<g opacity="0.35">
+<rect x="756" y="156" width="190" height="78" rx="21.84" fill="#241546" stroke="#8B5CF6" stroke-width="1.8" />
+<text x="851" y="186.25" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#EDECF5">Api</text>
+<text x="851" y="205.125" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="normal" fill="#EDECF5">Validates and routes</text>
+</g>
+</g>
+<g id="node-Billing" class="hvis-node hvis-type-process hvis-dimmed" data-hvis-name="Billing" data-hvis-type="process" data-hvis-shape="dfd-process" data-hvis-parent="App">
+<g opacity="0.35">
+<rect x="1166" y="156" width="190" height="78" rx="21.84" fill="#241546" stroke="#8B5CF6" stroke-width="1.8" />
+<text x="1261" y="186.25" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#EDECF5">Billing</text>
+<text x="1261" y="205.125" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="normal" fill="#EDECF5">Charges cards</text>
+</g>
+</g>
+<g id="node-CardVault" class="hvis-node hvis-type-data-store hvis-overlay hvis-overlay-SkipsValidation" data-hvis-name="CardVault" data-hvis-type="data-store" data-hvis-shape="dfd-data-store" data-hvis-parent="Data" data-hvis-overlay="SkipsValidation">
+<rect x="136" y="676" width="190" height="78" rx="2" fill="#161521" stroke="#FF2D2D" stroke-width="3.5" />
+<line x1="151.2" y1="676" x2="151.2" y2="754" stroke="#FF2D2D" stroke-width="3.5" />
+<line x1="310.8" y1="676" x2="310.8" y2="754" stroke="#FF2D2D" stroke-width="3.5" />
+<text x="231" y="706.25" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#EDECF5">CardVault</text>
+<text x="231" y="725.125" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="normal" fill="#EDECF5">Tokenised cards</text>
+</g>
+<g id="edge-Browser--Api" class="hvis-edge hvis-edge-default hvis-dimmed" data-hvis-from="Browser" data-hvis-to="Api" data-hvis-kind="default">
+<path d="M 326 195 L 756 195" fill="none" stroke="#B8B5C8" stroke-width="1.8" opacity="0.35" marker-end="url(#arrowhead-B8B5C8)" />
+<g class="hvis-edge-label">
+<path d="M 413.25 207 L 428.5 207 L 433.5 195 L 438.5 207 L 453.75 207 Q 457.75 207 457.75 211 L 457.75 225 Q 457.75 229 453.75 229 L 413.25 229 Q 409.25 229 409.25 225 L 409.25 211 Q 409.25 207 413.25 207 Z" fill="#EDECF5" fill-opacity="0.92" stroke="#1E1C2B" stroke-opacity="0.35" stroke-width="1" opacity="0.35" />
+<text x="433.5" y="218" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#1E1C2B" opacity="0.35">HTTPS</text>
+</g>
+</g>
+<g id="edge-Api--Billing" class="hvis-edge hvis-edge-default hvis-dimmed" data-hvis-from="Api" data-hvis-to="Billing" data-hvis-kind="default">
+<path d="M 946 191.28 L 1166 191.28" fill="none" stroke="#B8B5C8" stroke-width="1.8" opacity="0.35" marker-end="url(#arrowhead-B8B5C8)" />
+<g class="hvis-edge-label">
+<path d="M 984 203.28 L 996 203.28 L 1001 191.28 L 1006 203.28 L 1018 203.28 Q 1022 203.28 1022 207.28 L 1022 221.28 Q 1022 225.28 1018 225.28 L 984 225.28 Q 980 225.28 980 221.28 L 980 207.28 Q 980 203.28 984 203.28 Z" fill="#EDECF5" fill-opacity="0.92" stroke="#1E1C2B" stroke-opacity="0.35" stroke-width="1" opacity="0.35" />
+<text x="1001" y="214.28" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#1E1C2B" opacity="0.35">mTLS</text>
+</g>
+</g>
+<g id="edge-Billing--CardVault" class="hvis-edge hvis-edge-default hvis-dimmed" data-hvis-from="Billing" data-hvis-to="CardVault" data-hvis-kind="default">
+<path d="M 1166 198.72 L 1144 198.72 Q 1130 198.72 1130 212.72 L 1130 694 Q 1130 708 1116 708 L 326 708" fill="none" stroke="#B8B5C8" stroke-width="1.8" opacity="0.35" marker-end="url(#arrowhead-B8B5C8)" />
+<g class="hvis-edge-label">
+<path d="M 1060.5 315.04 L 1114 315.04 Q 1118 315.04 1118 319.04 L 1118 321.04 L 1130 326.04 L 1118 331.04 L 1118 333.04 Q 1118 337.04 1114 337.04 L 1060.5 337.04 Q 1056.5 337.04 1056.5 333.04 L 1056.5 319.04 Q 1056.5 315.04 1060.5 315.04 Z" fill="#EDECF5" fill-opacity="0.92" stroke="#1E1C2B" stroke-opacity="0.35" stroke-width="1" opacity="0.35" />
+<text x="1087.25" y="326.04" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#1E1C2B" opacity="0.35">SQL/TLS</text>
+</g>
+</g>
+<g id="edge-Browser--CardVault" class="hvis-edge hvis-edge-default hvis-overlay hvis-overlay-SkipsValidation" data-hvis-from="Browser" data-hvis-to="CardVault" data-hvis-kind="default" data-hvis-overlay="SkipsValidation">
+<path d="M 136 195 L 114 195 Q 100 195 100 209 L 100 701 Q 100 715 114 715 L 136 715" fill="none" stroke="#FF2D2D" stroke-width="3.15" marker-end="url(#arrowhead-FF2D2D)" />
+<g class="hvis-edge-label">
+<path d="M -8.5 314 L 84 314 Q 88 314 88 318 L 88 320 L 100 325 L 88 330 L 88 332 Q 88 336 84 336 L -8.5 336 Q -12.5 336 -12.5 332 L -12.5 318 Q -12.5 314 -8.5 314 Z" fill="#FF2D2D" fill-opacity="0.92" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="1" />
+<text x="37.75" y="325" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#FFFFFF">Direct upload</text>
+</g>
+</g>
+<g id="node-Internet--label" class="hvis-node-label" data-hvis-for="node-Internet">
+<g opacity="0.35">
+<text x="231" y="108" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#EDECF5">Internet</text>
+</g>
+</g>
+<g id="node-App--label" class="hvis-node-label" data-hvis-for="node-App">
+<g opacity="0.35">
+<text x="1056" y="108" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#EDECF5">App</text>
+</g>
+</g>
+<g id="node-Data--label" class="hvis-node-label" data-hvis-for="node-Data">
+<g opacity="0.35">
+<text x="231" y="628" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#EDECF5">Data</text>
+</g>
+</g>
+<g class="hvis-overlay-legend"><rect x="-12.5" y="838" width="461.304" height="37" rx="6" fill="#1E1C2B" stroke="#86839A" stroke-width="1" />
+<g class="hvis-overlay-legend-entry hvis-overlay-SkipsValidation" data-hvis-overlay="SkipsValidation">
+<line x1="1.5" y1="856.5" x2="19.5" y2="856.5" stroke="#FF2D2D" stroke-width="4" stroke-linecap="round" />
+<text x="31.5" y="856.5" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="13" fill="#EDECF5"><tspan font-weight="bold">SkipsValidation</tspan><tspan> — Untrusted input reaches stored cards</tspan></text>
+</g>
+</g>
+</svg>

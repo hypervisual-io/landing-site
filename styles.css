@@ -273,7 +273,7 @@ section[id] { scroll-margin-top: 4rem; }
 }
 .hero-card .panel-title a { color: inherit; text-decoration: none; }
 .hero-card .panel-title a:hover { color: var(--text); text-decoration: underline; }
-.hero-card img { display: block; width: 100%; height: auto; background: #fbfbfd; }
+.hero-card img { display: block; width: 100%; height: auto; }
 @media (min-width: 60rem) {
   .hero-grid {
     display: grid;

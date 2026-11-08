@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1108" height="780" viewBox="0 0 1108 780">
+<defs>
+  <marker id="arrowhead-B8B5C8" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto-start-reverse" markerUnits="strokeWidth">
+    <path d="M0,0 L10,3.5 L0,7" fill="#B8B5C8" />
+  </marker>
+</defs>
+<rect x="0" y="0" width="1108" height="780" fill="#161521" />
+<g id="node-DataAnalyst" class="hvis-node hvis-type-person" data-hvis-name="DataAnalyst" data-hvis-type="person" data-hvis-shape="person">
+<circle cx="220" cy="104" r="16" fill="#241546" stroke="#9A6BFF" stroke-width="1.8" />
+<rect x="80" y="128" width="280" height="91.25" rx="8" fill="#241546" stroke="#9A6BFF" stroke-width="1.8" />
+<text x="220" y="142" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="9.5" font-weight="bold" fill="#FFFFFF">Person</text>
+<text x="220" y="167.125" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF">DataAnalyst</text>
+<text x="220" y="186" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="normal" fill="#FFFFFF">Builds dashboards and investigates metric</text>
+<text x="220" y="199.5" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="normal" fill="#FFFFFF">anomalies</text>
+</g>
+<g id="node-ProductManager" class="hvis-node hvis-type-person" data-hvis-name="ProductManager" data-hvis-type="person" data-hvis-shape="person">
+<circle cx="888" cy="104" r="16" fill="#241546" stroke="#9A6BFF" stroke-width="1.8" />
+<rect x="748" y="128" width="280" height="91.25" rx="8" fill="#241546" stroke="#9A6BFF" stroke-width="1.8" />
+<text x="888" y="142" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="9.5" font-weight="bold" fill="#FFFFFF">Person</text>
+<text x="888" y="173.875" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF">ProductManager</text>
+<text x="888" y="192.75" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="normal" fill="#FFFFFF">Reviews product KPIs and scheduled reports</text>
+</g>
+<g id="node-EventBus" class="hvis-node hvis-type-system" data-hvis-name="EventBus" data-hvis-type="system" data-hvis-shape="rounded-rect">
+<rect x="424" y="111.25" width="260" height="76.75" rx="8" fill="#1E1C2B" stroke="#9A6BFF" stroke-width="1.8" stroke-dasharray="8,5" />
+<text x="554" y="125.25" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="9.5" font-weight="bold" fill="#EDECF5">External Software System</text>
+<text x="554" y="149.875" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#EDECF5">EventBus</text>
+<text x="554" y="168.75" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="normal" fill="#EDECF5">Kafka event bus owned by product teams</text>
+</g>
+<g id="node-AnalyticsPlatform" class="hvis-node hvis-type-system" data-hvis-name="AnalyticsPlatform" data-hvis-type="system" data-hvis-shape="rounded-rect">
+<rect x="436.25" y="375.25" width="280" height="91.25" rx="8" fill="#8B5CF6" stroke="#9A6BFF" stroke-width="1.8" />
+<text x="576.25" y="389.25" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="9.5" font-weight="bold" fill="#FFFFFF">Software System</text>
+<text x="576.25" y="421.125" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF">AnalyticsPlatform</text>
+<text x="576.25" y="440" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="normal" fill="#FFFFFF">Ingests product events and serves analytics</text>
+</g>
+<g id="node-DataWarehouse" class="hvis-node hvis-type-system" data-hvis-name="DataWarehouse" data-hvis-type="system" data-hvis-shape="rounded-rect">
+<rect x="291.625" y="622.5" width="266" height="76.75" rx="8" fill="#1E1C2B" stroke="#9A6BFF" stroke-width="1.8" stroke-dasharray="8,5" />
+<text x="424.625" y="636.5" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="9.5" font-weight="bold" fill="#EDECF5">External Software System</text>
+<text x="424.625" y="661.125" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#EDECF5">DataWarehouse</text>
+<text x="424.625" y="680" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="normal" fill="#EDECF5">Warehouse for modeled analytical tables</text>
+</g>
+<g id="node-Slack" class="hvis-node hvis-type-system" data-hvis-name="Slack" data-hvis-type="system" data-hvis-shape="rounded-rect">
+<rect x="621.625" y="622.5" width="224" height="76.75" rx="8" fill="#1E1C2B" stroke="#9A6BFF" stroke-width="1.8" stroke-dasharray="8,5" />
+<text x="733.625" y="636.5" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="9.5" font-weight="bold" fill="#EDECF5">External Software System</text>
+<text x="733.625" y="661.125" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#EDECF5">Slack</text>
+<text x="733.625" y="680" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="normal" fill="#EDECF5">Receives metric threshold alerts</text>
+</g>
+<g id="edge-DataAnalyst--AnalyticsPlatform" class="hvis-edge hvis-edge-default" data-hvis-from="DataAnalyst" data-hvis-to="AnalyticsPlatform" data-hvis-kind="default">
+<path d="M 342 219.25 L 342 325.25 Q 342 339.25 356 339.25 L 440.25 339.25 Q 454.25 339.25 454.25 353.25 L 454.25 375.25" fill="none" stroke="#B8B5C8" stroke-width="1.8" marker-end="url(#arrowhead-B8B5C8)" />
+<g class="hvis-edge-label">
+<path d="M 175 231.25 L 326 231.25 Q 330 231.25 330 235.25 L 330 244.25 L 342 249.25 L 330 254.25 L 330 263.25 Q 330 267.25 326 267.25 L 175 267.25 Q 171 267.25 171 263.25 L 171 235.25 Q 171 231.25 175 231.25 Z" fill="#EDECF5" fill-opacity="0.92" stroke="#1E1C2B" stroke-opacity="0.35" stroke-width="1" />
+<text x="250.5" y="242.25" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#1E1C2B">Creates dashboards and</text>
+<text x="250.5" y="256.25" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#1E1C2B">SQL explorations</text>
+</g>
+</g>
+<g id="edge-ProductManager--AnalyticsPlatform" class="hvis-edge hvis-edge-default" data-hvis-from="ProductManager" data-hvis-to="AnalyticsPlatform" data-hvis-kind="default">
+<path d="M 766 219.25 L 766 241.25 Q 766 255.25 752 255.25 L 712.25 255.25 Q 698.25 255.25 698.25 269.25 L 698.25 375.25" fill="none" stroke="#B8B5C8" stroke-width="1.8" marker-end="url(#arrowhead-B8B5C8)" />
+<g class="hvis-edge-label">
+<path d="M 782 228.25 L 920 228.25 Q 924 228.25 924 232.25 L 924 260.25 Q 924 264.25 920 264.25 L 782 264.25 Q 778 264.25 778 260.25 L 778 251.25 L 766 246.25 L 778 241.25 L 778 232.25 Q 778 228.25 782 228.25 Z" fill="#EDECF5" fill-opacity="0.92" stroke="#1E1C2B" stroke-opacity="0.35" stroke-width="1" />
+<text x="851" y="239.25" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#1E1C2B">Views dashboards and</text>
+<text x="851" y="253.25" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#1E1C2B">exports reports</text>
+</g>
+</g>
+<g id="edge-EventBus--AnalyticsPlatform" class="hvis-edge hvis-edge-default" data-hvis-from="EventBus" data-hvis-to="AnalyticsPlatform" data-hvis-kind="default">
+<path d="M 576.25 188 L 576.25 375.25" fill="none" stroke="#B8B5C8" stroke-width="1.8" marker-end="url(#arrowhead-B8B5C8)" />
+<g class="hvis-edge-label">
+<path d="M 409.25 223.813 L 560.25 223.813 Q 564.25 223.813 564.25 227.813 L 564.25 229.813 L 576.25 234.813 L 564.25 239.813 L 564.25 241.813 Q 564.25 245.813 560.25 245.813 L 409.25 245.813 Q 405.25 245.813 405.25 241.813 L 405.25 227.813 Q 405.25 223.813 409.25 223.813 Z" fill="#EDECF5" fill-opacity="0.92" stroke="#1E1C2B" stroke-opacity="0.35" stroke-width="1" />
+<text x="484.75" y="234.813" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#1E1C2B">Streams product events</text>
+</g>
+</g>
+<g id="edge-AnalyticsPlatform--DataWarehouse" class="hvis-edge hvis-edge-default" data-hvis-from="AnalyticsPlatform" data-hvis-to="DataWarehouse" data-hvis-kind="default">
+<path d="M 454.25 466.5 L 454.25 622.5" fill="none" stroke="#B8B5C8" stroke-width="1.8" marker-end="url(#arrowhead-B8B5C8)" />
+<g class="hvis-edge-label">
+<path d="M 313.25 487.5 L 438.25 487.5 Q 442.25 487.5 442.25 491.5 L 442.25 500.5 L 454.25 505.5 L 442.25 510.5 L 442.25 519.5 Q 442.25 523.5 438.25 523.5 L 313.25 523.5 Q 309.25 523.5 309.25 519.5 L 309.25 491.5 Q 309.25 487.5 313.25 487.5 Z" fill="#EDECF5" fill-opacity="0.92" stroke="#1E1C2B" stroke-opacity="0.35" stroke-width="1" />
+<text x="375.75" y="498.5" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#1E1C2B">Writes transformed</text>
+<text x="375.75" y="512.5" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#1E1C2B">tables</text>
+</g>
+</g>
+<g id="edge-AnalyticsPlatform--Slack" class="hvis-edge hvis-edge-default" data-hvis-from="AnalyticsPlatform" data-hvis-to="Slack" data-hvis-kind="default">
+<path d="M 698.25 466.5 L 698.25 622.5" fill="none" stroke="#B8B5C8" stroke-width="1.8" marker-end="url(#arrowhead-B8B5C8)" />
+<g class="hvis-edge-label">
+<path d="M 589.75 487.5 L 682.25 487.5 Q 686.25 487.5 686.25 491.5 L 686.25 500.5 L 698.25 505.5 L 686.25 510.5 L 686.25 519.5 Q 686.25 523.5 682.25 523.5 L 589.75 523.5 Q 585.75 523.5 585.75 519.5 L 585.75 491.5 Q 585.75 487.5 589.75 487.5 Z" fill="#EDECF5" fill-opacity="0.92" stroke="#1E1C2B" stroke-opacity="0.35" stroke-width="1" />
+<text x="636" y="498.5" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#1E1C2B">Sends alert</text>
+<text x="636" y="512.5" text-anchor="middle" dominant-baseline="central" font-family="Space Grotesk, Arial, Helvetica, sans-serif" font-size="10" font-weight="600" fill="#1E1C2B">notifications</text>
+</g>
+</g>
+</svg>
