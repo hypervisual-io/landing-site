@@ -135,8 +135,10 @@
 <span class="code-output">OK: checkout-sequence.hvis (9 nodes, 8 edges)</span>
 <span class="code-prompt">$</span> <span class="code-command">hypervis</span> render checkout-sequence.hvis <span class="code-flag">--format</span> svg <span class="code-flag">-o</span> checkout-sequence.svg
 <span class="code-output">Rendered 8 nodes, 8 edges → checkout-sequence.svg</span>
-<span class="code-prompt">$</span> <span class="code-command">hypervis</span> query threats.hvis <span class="code-string">'[external-entity] -> ... -> [data-store]'</span> <span class="code-flag">-o</span> paths.svg  <span class="code-comment"># highlight matches</span>
-<span class="code-output">Browser -> CardVault</span></code></pre>
+<span class="code-prompt">$</span> <span class="code-command">hypervis</span> query threats.hvis <span class="code-string">'[external-entity] -> [data-store]'</span> <span class="code-flag">-o</span> paths.svg
+<span class="code-output">Browser -> CardVault
+1 match
+Rendered 1 match highlighted → paths.svg</span></code></pre>
       </div>
     </section>
 
