@@ -134,7 +134,11 @@
         <pre class="code terminal" aria-label="Validate and render commands"><code><span class="code-prompt">$</span> <span class="code-command">hypervis</span> validate checkout-sequence.hvis
 <span class="code-output">OK: checkout-sequence.hvis (9 nodes, 8 edges)</span>
 <span class="code-prompt">$</span> <span class="code-command">hypervis</span> render checkout-sequence.hvis <span class="code-flag">--format</span> svg <span class="code-flag">-o</span> checkout-sequence.svg
-<span class="code-output">Rendered 8 nodes, 8 edges → checkout-sequence.svg</span></code></pre>
+<span class="code-output">Rendered 8 nodes, 8 edges → checkout-sequence.svg</span>
+<span class="code-prompt">$</span> <span class="code-command">hypervis</span> query threats.hvis <span class="code-string">'[external-entity] -> [data-store]'</span> <span class="code-flag">-o</span> paths.svg
+<span class="code-output">Browser -> CardVault
+1 match
+Rendered 1 match highlighted → paths.svg</span></code></pre>
       </div>
     </section>
 
@@ -154,6 +158,10 @@
           <li>
             <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v14"/><path d="M5 10h14"/><path d="M5 21h14"/></svg></span>
             <h3><code>diff</code></h3><p>Compares two versions of a diagram and shows what changed.</p>
+          </li>
+          <li>
+            <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="12" r="2.5"/><path d="M8.5 12h7"/><path d="m11 9 3 3-3 3"/></svg></span>
+            <h3><code>query</code></h3><p>Finds paths matching a graph pattern; <code>--expect none</code> fails CI when anything matches.</p>
           </li>
           <li>
             <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
@@ -191,7 +199,7 @@
         <div class="agent-row">
           <div class="agent-text">
             <h3>MCP server</h3>
-            <p><code>hypervis mcp</code> serves validate, render, expand, diff and scan over stdio. These configs only need Node.</p>
+            <p><code>hypervis mcp</code> serves validate, render, expand, diff, scan and query (<code>hvis_query</code>) over stdio. These configs only need Node.</p>
           </div>
           <div class="agent-code">
             <p class="label">Claude Code</p>
