@@ -260,6 +260,32 @@ section[id] { scroll-margin-top: 4rem; }
   line-height: 1.05;
   letter-spacing: -0.035em;
 }
+/* Hero diagrams: two rendered examples as overlapping cards, beside the text
+   on wide screens and stacked below it otherwise. */
+.hero-visual { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; margin-top: 3rem; }
+.hero-card {
+  margin: 0;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-large);
+  box-shadow: var(--shadow);
+}
+.hero-card .panel-title a { color: inherit; text-decoration: none; }
+.hero-card .panel-title a:hover { color: var(--text); text-decoration: underline; }
+.hero-card img { display: block; width: 100%; height: auto; background: #fbfbfd; }
+@media (min-width: 60rem) {
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: 3rem;
+    align-items: center;
+  }
+  .hero-visual { margin-top: 0; gap: 0; }
+  .hero-card { grid-area: 1 / 1; }
+  .hero-card-back { width: 82%; justify-self: end; align-self: start; }
+  .hero-card-front { width: 74%; justify-self: start; align-self: end; margin-top: 15rem; }
+}
 .lead {
   max-width: 40rem;
   margin: 1.4rem 0 0;

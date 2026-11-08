@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <title>HyperVisual: architecture diagrams that validate themselves</title>
+  <title>HyperVisual: collaborate on architecture, not code</title>
   <meta name="description" content="Write architecture diagrams as typed YAML .hvis files. The hypervis CLI validates, renders SVG/PNG, diffs and scans code, and gives AI agents the same tools over MCP.">
   <link rel="canonical" href="https://hypervisual.io/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -12,7 +12,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="HyperVisual">
   <meta property="og:url" content="https://hypervisual.io/">
-  <meta property="og:title" content="HyperVisual: architecture diagrams that validate themselves">
+  <meta property="og:title" content="HyperVisual: collaborate on architecture, not code">
   <meta property="og:description" content="Typed YAML diagrams, a CLI that validates and renders them, and the same tools for AI agents over MCP. Early preview, Apache-2.0.">
 
   <link rel="preload" href="assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
@@ -42,17 +42,31 @@
 
   <main id="main">
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="wrap">
-        <p class="badge">Early preview · Apache-2.0</p>
-        <h1 id="hero-title">Architecture diagrams that validate themselves.</h1>
-        <p class="lead">
-          Write diagrams as typed YAML <code>.hvis</code> files. The <code>hypervis</code> CLI
-          validates them, renders SVG or PNG, diffs versions and scans code, and gives
-          AI agents the same tools over MCP.
-        </p>
-        <div class="actions">
-          <a class="button button-primary" href="#install">Install the CLI</a>
-          <a class="button" href="https://github.com/hypervisual-io/hypervisual">Source on GitHub</a>
+      <div class="wrap hero-grid">
+        <div class="hero-text">
+          <p class="badge">Early preview · Apache-2.0</p>
+          <h1 id="hero-title">Collaborate on architecture, not code.</h1>
+          <p class="lead">
+            Diagrams as typed YAML <code>.hvis</code> files, validated semantically. The
+            <code>hypervis</code> CLI checks them, renders SVG or PNG, diffs and queries them,
+            and gives AI agents the same tools over MCP.
+          </p>
+          <div class="actions">
+            <a class="button button-primary" href="#install">Install the CLI</a>
+            <a class="button" href="https://github.com/hypervisual-io/hypervisual">Source on GitHub</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <figure class="hero-card hero-card-back">
+            <figcaption class="panel-title"><a href="assets/hero-c4-context.hvis">c4-context</a></figcaption>
+            <img src="assets/hero-c4-context.svg" width="1108" height="780"
+                 alt="C4 context diagram. A data analyst and a product manager use the AnalyticsPlatform, which reads from an external event bus and writes to a data warehouse and Slack.">
+          </figure>
+          <figure class="hero-card hero-card-front">
+            <figcaption class="panel-title"><a href="assets/hero-threat-model.hvis">threat-model · query overlay</a></figcaption>
+            <img src="assets/hero-threat-model.svg" width="1537" height="980"
+                 alt="Threat model with Internet, App and Data trust boundaries. A query highlights in red the one flow where the untrusted browser writes straight to the card vault, skipping the API and billing processes.">
+          </figure>
         </div>
       </div>
     </section>
